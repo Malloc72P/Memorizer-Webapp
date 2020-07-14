@@ -1,0 +1,12 @@
+.main-nav-wrapper{
+  /*width: 220px;*/
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+}
+.main-nav-list{
+
+}
+.main-nav-width-adjuster{
+  cursor: col-resize;
+}

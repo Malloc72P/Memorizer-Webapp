@@ -1,0 +1,23 @@
+<!--앱 전체의 래퍼-->
+<div class="main-outer-wrapper">
+  <!--앱의 헤더. 툴바부분임. 맨 위에거.-->
+  <app-main-header></app-main-header>
+
+  <!--헤더 아랫부분 전체를 감싸는 래퍼임-->
+  <div class="main-content-wrapper">
+
+    <!--맨 왼쪽 사이드바의 래퍼. 여기에 네비게이터 토글버튼 있음-->
+    <app-main-sidebar class="light-box-shadow grey-background-5"></app-main-sidebar>
+
+    <!--카테고리 네비게이터. 카테고리 목록이 여기에 출력됨-->
+    <app-main-navigator></app-main-navigator>
+
+    <!--아이템 네비게이터. 문제 목록이 여기에 출력됨-->
+    <app-main-navigator></app-main-navigator>
+
+    <!--페이지 내용을 표시하는 래퍼-->
+    <app-main-article class="light-box-shadow"></app-main-article>
+
+  </div>
+
+</div>

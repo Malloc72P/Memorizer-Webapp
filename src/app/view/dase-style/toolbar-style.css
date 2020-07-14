@@ -1,0 +1,18 @@
+/*mat-toolbar 관련 스타일*/
+/*툴바에 배치되는 타이틀이나 버튼을 감싸는 span태그의 클래스*/
+.toolbar-item-wrapper{
+  display: flex !important;
+}
+  /*위의 래퍼 안에 들어가는 mat-icon의 스타일*/
+  .toolbar-icon{
+    line-height: 32px;
+    margin-right: 8px;
+  }
+  /*툴바안에 들어가는 문자관련 태그의 스타일임. h1,h2이런거에 적용됨*/
+  .toolbar-title{
+    display: inline-block;
+  }
+/*툴바 아이템 사이에 공간을 차지하는 용도의 스타일*/
+.toolbar-spacer{
+  flex: 1;
+}

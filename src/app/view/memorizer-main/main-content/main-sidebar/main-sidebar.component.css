@@ -1,0 +1,6 @@
+.main-sidebar-wrapper{
+  width:  60px;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
