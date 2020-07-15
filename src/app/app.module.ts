@@ -11,6 +11,11 @@ import { MainHeaderComponent } from './view/memorizer-main/main-header/main-head
 import { MainSidebarComponent } from './view/memorizer-main/main-content/main-sidebar/main-sidebar.component';
 import { MainNavigatorComponent } from './view/memorizer-main/main-content/main-navigator/main-navigator.component';
 import { MainArticleComponent } from './view/memorizer-main/main-content/main-article/main-article.component';
+import { SectionCardComponent } from './view/memorizer-main/main-content/main-navigator/section-card/section-card.component';
+import { SubNavigatorComponent } from './view/memorizer-main/main-content/sub-navigator/sub-navigator.component';
+import {MatRippleModule} from '@angular/material/core';
+import { ProblemCardComponent } from './view/memorizer-main/main-content/main-navigator/problem-card/problem-card.component';
+
 
 @NgModule({
   declarations: [
@@ -19,14 +24,18 @@ import { MainArticleComponent } from './view/memorizer-main/main-content/main-ar
     MainHeaderComponent,
     MainSidebarComponent,
     MainNavigatorComponent,
-    MainArticleComponent
+    MainArticleComponent,
+    SectionCardComponent,
+    SubNavigatorComponent,
+    ProblemCardComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

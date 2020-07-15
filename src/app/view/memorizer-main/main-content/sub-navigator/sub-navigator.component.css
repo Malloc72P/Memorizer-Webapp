@@ -5,9 +5,10 @@
   flex-flow: row;
 }
 .main-nav-list{
-  padding-left: 6px;
+
 }
 .main-nav-width-adjuster{
   cursor: col-resize;
 }
+
 

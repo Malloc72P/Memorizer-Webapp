@@ -1,13 +1,11 @@
 <div #sidebarIdentifier [ngStyle]="{'width' : navWidth + 'px'}"
-  class="main-nav-wrapper">
+     class="main-nav-wrapper">
   <!--토글버튼 있는 사이드바 바로 오른쪽에 있는 네비게이터. 여기에 카테고리가 표시됨-->
 
-  <!--섹션 리스트-->
+  <!--아이템 리스트-->
   <div [ngStyle]="{'width' : (navWidth - adjusterSize) + 'px'}"
        class="main-nav-list light-box-shadow grey-background-4">
-    <app-section-card></app-section-card>
-    <app-section-card></app-section-card>
-    <app-section-card></app-section-card>
+      <app-problem-card></app-problem-card>
   </div>
 
   <!--가로길이 조정기-->

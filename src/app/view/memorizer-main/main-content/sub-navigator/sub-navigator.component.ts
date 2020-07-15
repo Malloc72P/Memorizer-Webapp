@@ -1,12 +1,13 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
 
 @Component({
-  selector: 'app-main-navigator',
-  templateUrl: './main-navigator.component.html',
-  styleUrls: ['./main-navigator.component.css', '../../../dase-style/color-style.css']
+  selector: 'app-sub-navigator',
+  templateUrl: './sub-navigator.component.html',
+  styleUrls: ['./sub-navigator.component.css', '../../../dase-style/color-style.css']
 })
-export class MainNavigatorComponent implements OnInit {
+export class SubNavigatorComponent implements OnInit {
+
   @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
 
   private downPosX = 0;
@@ -16,12 +17,12 @@ export class MainNavigatorComponent implements OnInit {
   ) {
     this.mainViewCtrlService.mainViewActionEventEmitter
       .subscribe((event:MainViewActionEvent)=>{
-      switch (event.action) {
-        case MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED:
-          this.toggleNav();
-          break;
-      }
-    })
+        switch (event.action) {
+          case MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED:
+            this.toggleNav();
+            break;
+        }
+      })
   }
   toggleNav(){
     if(this.isDisplayed){
@@ -74,4 +75,5 @@ export class MainNavigatorComponent implements OnInit {
       this.isDragging = false;
     }
   }
+
 }
