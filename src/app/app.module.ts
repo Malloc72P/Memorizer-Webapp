@@ -15,6 +15,13 @@ import { SectionCardComponent } from './view/memorizer-main/main-content/main-na
 import { SubNavigatorComponent } from './view/memorizer-main/main-content/sub-navigator/sub-navigator.component';
 import {MatRippleModule} from '@angular/material/core';
 import { ProblemCardComponent } from './view/memorizer-main/main-content/main-navigator/problem-card/problem-card.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {NgWhiteboardModule} from 'ng-whiteboard';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +42,14 @@ import { ProblemCardComponent } from './view/memorizer-main/main-content/main-na
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatRippleModule
+    MatRippleModule,
+    MatDividerModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    NgWhiteboardModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

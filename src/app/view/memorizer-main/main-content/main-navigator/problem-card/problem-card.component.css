@@ -6,6 +6,7 @@
   margin-bottom: 8px;
   cursor: pointer;
   transition: 0.2s;
+  padding-left: 8px;
 }
 .problem-card-wrapper:hover{
   background: lightpink;

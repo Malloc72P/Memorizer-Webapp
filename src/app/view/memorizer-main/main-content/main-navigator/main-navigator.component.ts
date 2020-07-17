@@ -28,13 +28,13 @@ export class MainNavigatorComponent implements OnInit {
       //현재 네비메뉴가 열려있다면 닫기
       this.prevWidth = this.navWidth;
       this.navWidth = 0;
-      this.sidebarIdentifier.nativeElement.style.visibility= "hidden";
+      // this.sidebarIdentifier.nativeElement.style.visibility= "hidden";
       this.isDisplayed = false;
     }
     else{
       //닫혀있었다면 이전 가로길이를 복구
       this.navWidth = this.prevWidth;
-      this.sidebarIdentifier.nativeElement.style.visibility= "visible";
+      // this.sidebarIdentifier.nativeElement.style.visibility= "visible";
       this.isDisplayed = true;
     }
   }
