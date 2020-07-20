@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
+import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
   selector: 'app-main-navigator',
@@ -12,7 +13,8 @@ export class MainNavigatorComponent implements OnInit {
   private downPosX = 0;
   private downPosY = 0;
   constructor(
-    public mainViewCtrlService:MainViewCtrlService
+    public mainViewCtrlService:MainViewCtrlService,
+    public tempDataMgrService:TempDataMgrService,
   ) {
     this.mainViewCtrlService.mainViewActionEventEmitter
       .subscribe((event:MainViewActionEvent)=>{

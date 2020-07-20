@@ -21,5 +21,4 @@ export class MainViewCtrlService {
   constructor() {
     this.mainViewActionEventEmitter = new EventEmitter<any>();
   }
-
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {SectionDto} from '../../../../../model/dto/section.dto';
+import {PaletteMgrService} from '../../../../../model/palette-mgr/palette-mgr.service';
 
 @Component({
   selector: 'app-section-card',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-card.component.css','../../../../dase-style/color-style.css']
 })
 export class SectionCardComponent implements OnInit {
-
-  constructor() { }
+  @Input() sectionDto:SectionDto;
+  @Input() index:number;
+  constructor(
+    public paletteMgrService:PaletteMgrService
+  ) { }
 
   ngOnInit(): void {
   }

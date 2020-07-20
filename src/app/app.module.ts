@@ -22,6 +22,8 @@ import {NgWhiteboardModule} from 'ng-whiteboard';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormsModule} from '@angular/forms';
+import { CreateSectionDialogComponent } from './view/memorizer-main/main-dialog/create-section-dialog/create-section-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -35,6 +37,10 @@ import {FormsModule} from '@angular/forms';
     SectionCardComponent,
     SubNavigatorComponent,
     ProblemCardComponent,
+    CreateSectionDialogComponent,
+  ],
+  entryComponents: [
+    CreateSectionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,8 @@ import {FormsModule} from '@angular/forms';
     NgWhiteboardModule,
     MatSelectModule,
     MatSlideToggleModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
