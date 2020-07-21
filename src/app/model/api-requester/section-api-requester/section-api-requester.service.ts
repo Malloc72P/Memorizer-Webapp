@@ -12,11 +12,15 @@ export class SectionApiRequesterService {
     private tempDataMgrService:TempDataMgrService
   ) { }
   requestCreateSection(newSectionTitle){
+    if(!newSectionTitle){
+      return;
+    }
     let newSection:SectionDto = new SectionDto();
     newSection.title = newSectionTitle;
     this.tempDataMgrService.createSection(newSection);
   }
-  requestCreateProblem(){
+  requestCreateProblem(problemDto:ProblemDto){
+    this.tempDataMgrService.createProblem(problemDto);
 
   }
 }

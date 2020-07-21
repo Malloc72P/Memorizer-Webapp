@@ -13,11 +13,24 @@ export class ProblemDto {
     this._id = id;
     this.owner = owner;
     this.createdDate = createdDate;
-    this.questionedCount = questionedCount;
-    this.correctCount = correctCount;
-    this.incorrectCount = incorrectCount;
     this.title = title;
     this.question = question;
     this.answer = answer;
+
+    if (questionedCount) {
+      this.questionedCount = questionedCount;
+    } else {
+      this.questionedCount = 0;
+    }
+    if (correctCount) {
+      this.correctCount = correctCount;
+    } else {
+      this.correctCount = 0;
+    }
+    if (incorrectCount) {
+      this.incorrectCount = incorrectCount;
+    } else {
+      this.incorrectCount = 0;
+    }
   }
 }

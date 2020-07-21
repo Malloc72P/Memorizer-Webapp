@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TempDataMgrService} from '../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
   selector: 'app-main-header',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public tempDataMgrService:TempDataMgrService
+  ) { }
 
   ngOnInit(): void {
   }

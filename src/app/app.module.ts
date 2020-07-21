@@ -14,7 +14,7 @@ import { MainArticleComponent } from './view/memorizer-main/main-content/main-ar
 import { SectionCardComponent } from './view/memorizer-main/main-content/main-navigator/section-card/section-card.component';
 import { SubNavigatorComponent } from './view/memorizer-main/main-content/sub-navigator/sub-navigator.component';
 import {MatRippleModule} from '@angular/material/core';
-import { ProblemCardComponent } from './view/memorizer-main/main-content/main-navigator/problem-card/problem-card.component';
+import { ProblemCardComponent } from './view/memorizer-main/main-content/sub-navigator/problem-card/problem-card.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -24,6 +24,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormsModule} from '@angular/forms';
 import { CreateSectionDialogComponent } from './view/memorizer-main/main-dialog/create-section-dialog/create-section-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { CreateProblemDialogComponent } from './view/memorizer-main/main-dialog/create-problem-dialog/create-problem-dialog.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     SubNavigatorComponent,
     ProblemCardComponent,
     CreateSectionDialogComponent,
+    CreateProblemDialogComponent,
   ],
   entryComponents: [
     CreateSectionDialogComponent
@@ -56,7 +59,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatSlideToggleModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

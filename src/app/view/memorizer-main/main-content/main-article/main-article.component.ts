@@ -1,5 +1,6 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {NgWhiteboardService} from 'ng-whiteboard';
+import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
   selector: 'app-main-article',
@@ -11,12 +12,16 @@ export class MainArticleComponent implements OnInit {
   public brushSize = 0.3;
   public isAnswerViewingMode = false;
   constructor(
-    private whiteboardService: NgWhiteboardService
+    private whiteboardService: NgWhiteboardService,
+    public tempDataMgrService: TempDataMgrService,
   ) { }
 
   ngOnInit(): void {
 
   }
+
+
+  /*화이트보드 동작제어 메서드*/
   clear(){
     this.whiteboardService.erase();
   }

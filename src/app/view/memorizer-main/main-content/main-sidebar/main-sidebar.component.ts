@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
-import {SectionDialogCtrlService} from '../../../../model/dialog-ctrl/section-dialog-ctrl/section-dialog-ctrl.service';
 import {SectionApiRequesterService} from '../../../../model/api-requester/section-api-requester/section-api-requester.service';
+import {DialogCtrlService} from '../../../../model/dialog-ctrl/dialog-ctrl.service';
 
 @Component({
   selector: 'app-main-sidebar',
@@ -12,7 +12,7 @@ export class MainSidebarComponent implements OnInit {
 
   constructor(
     public mainViewCtrlService:MainViewCtrlService,
-    public sectionDialogCtrlService:SectionDialogCtrlService,
+    public dialogCtrlService:DialogCtrlService,
     public sectionApiRequesterService:SectionApiRequesterService
   ) { }
 
@@ -25,13 +25,18 @@ export class MainSidebarComponent implements OnInit {
         null, MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED));
   }
   onCreateSecionBtnClick(){
-    this.sectionDialogCtrlService.openCreateDialog()
+    this.dialogCtrlService.openCreateSectionDialog()
         .subscribe(result => {
-        console.log("SectionDialogCtrlService >> openDialog >> afterClosed >> result : ",result);
+        console.log("SectionDialogCtrlService >> onCreateSecionBtnClick >> afterClosed >> result : ",result);
         this.sectionApiRequesterService.requestCreateSection(result);
       });
   }
   onCreateProblemBtnClick(){
+    this.dialogCtrlService.openCreateProblemDialog()
+      .subscribe(result => {
+        console.log("SectionDialogCtrlService >> onCreateProblemBtnClick >> afterClosed >> result : ",result);
+        this.sectionApiRequesterService.requestCreateProblem(result);
+      });
 
   }
 

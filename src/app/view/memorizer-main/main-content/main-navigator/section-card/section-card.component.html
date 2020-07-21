@@ -1,4 +1,4 @@
-<div matRipple class="section-card-wrapper">
+<div matRipple class="section-card-wrapper" (click)="onSectionCardClicked()">
   <!--섹션 카드 컴포넌트-->
   <div class="section-card-label" [ngStyle]="{ background : paletteMgrService.getColorByIndex(index) }"></div>
   <div class="section-card-title">

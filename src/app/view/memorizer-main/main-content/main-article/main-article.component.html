@@ -1,26 +1,27 @@
-<div class="main-article-wrapper">
+<div class="main-article-wrapper" *ngIf="tempDataMgrService.currProblem">
+  <!--선택된 문제가 있는 경우(TDMS에 currProblem이 있는 경우 해당 태그가 표시됨)-->
   <!--페이지 내용을 표시하는 래퍼-->
 
   <!--문제이름-->
   <div class="article-problem-name">
-    <h1>SDLC</h1>
+    <h1>{{tempDataMgrService.currProblem.title}}</h1>
     <mat-divider></mat-divider>
     <div class="article-problem-detail-wrapper">
       <div class="article-problem-detail-item">
         <h4>만든날짜 : </h4>
-        <h4>2020-07-13 14:20 PM</h4>
+        <h4>{{tempDataMgrService.currProblem.createdDate | date:'medium'}}</h4>
       </div>
       <div class="article-problem-detail-item">
         <h4>출제횟수 : </h4>
-        <h4>76번</h4>
+        <h4>{{tempDataMgrService.currProblem.questionedCount}}번</h4>
       </div>
       <div class="article-problem-detail-item">
         <h4>맞춘횟수 : </h4>
-        <h4>72번</h4>
+        <h4>{{tempDataMgrService.currProblem.correctCount}}번</h4>
       </div>
       <div class="article-problem-detail-item">
         <h4>틀린횟수 : </h4>
-        <h4>4번</h4>
+        <h4>{{tempDataMgrService.currProblem.incorrectCount}}번</h4>
       </div>
     </div>
     <mat-divider></mat-divider>
@@ -29,7 +30,7 @@
   <!--지문-->
   <div class="article-problem-question">
     <!--<h1><mat-icon>help_center</mat-icon></h1>-->
-    <h1>문제 : SW생명주기는 계획, 분석, OO, OO, OO, OO로 구성된다. 빈칸은?</h1>
+    <h1>문제 : {{tempDataMgrService.currProblem.question}}</h1>
   </div>
 
   <!--답 쓰는 곳-->
@@ -87,7 +88,15 @@
   <!--정답 부분-->
   <div *ngIf="isAnswerViewingMode" class="article-problem-answer">
     <h1>정답 : </h1>
-    <h1>설계, 구현, 테스트, 유지보수</h1>
+    <h1>{{tempDataMgrService.currProblem.answer}}</h1>
     <mat-divider></mat-divider>
+  </div>
+</div>
+
+<div class="main-article-wrapper" *ngIf="!tempDataMgrService.currProblem">
+  <div class="article-problem-name">
+    <h1>현재 선택된 문제가 없어요!</h1>
+    <mat-divider></mat-divider>
+    <h2>문제를 선택해주세요!</h2>
   </div>
 </div>
