@@ -5,10 +5,12 @@
     </span>
   <span class="toolbar-spacer"></span>
   <span class="toolbar-item-wrapper">
-      <button mat-button
-              *ngIf="tempDataMgrService.userDto === null"
-              matTooltip="login">login</button>
     <button mat-button
+            (click)="onLoginBtnClicked()"
+            *ngIf="tempDataMgrService.userDto === null"
+            matTooltip="login">login</button>
+    <button mat-button
+            (click)="onLogoutBtnClicked()"
             *ngIf="tempDataMgrService.userDto !== null"
             matTooltip="logout">logout</button>
     </span>

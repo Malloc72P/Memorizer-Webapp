@@ -21,15 +21,15 @@ export enum DocumentEventEnum{
 })
 export class TempDataMgrService {
   /*현재 로그인된 계정주인의 정보가 여기에 저장됨*/
-  private _userDto = null;
+  private _userDto:UserDto = null;
   /*섹션 네비바에 출력될 정보임*/
   private _sectionList:Array<SectionDto>;
   /*문제 네비바에 출력될 정보임*/
   private _problemList:Array<ProblemDto>;
   /*현재 선택된 섹션임*/
-  private _currSection:SectionDto;
+  private _currSection:SectionDto = null;
   /*현재 선택된 문제임*/
-  private _currProblem:ProblemDto;
+  private _currProblem:ProblemDto = null;
 
   /* 각각의 정보가 변경되는 경우 이벤트를 발생시키는 EventEmitter임 */
   public userDtoEventEmitter:EventEmitter<any>;
@@ -80,6 +80,12 @@ export class TempDataMgrService {
     newProblem1.createdDate = new Date();
     this.problemList.push(newProblem1);
   }
+  //유저데이터 처리 메서드
+  public setUserDto(userDto:UserDto){
+    this._userDto = userDto;
+    this.userDtoEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._userDto ))
+  }
+  //섹션, 문제 데이터 처리 메서드
   public createSection( newSection:SectionDto ){
     this._sectionList.push(newSection);
     this.sectionListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.CREATE, newSection ));
@@ -97,6 +103,8 @@ export class TempDataMgrService {
     this._currProblem = problemDto;
     this.currProblemEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._currProblem ));
   }
+
+
 
 
   get userDto() {

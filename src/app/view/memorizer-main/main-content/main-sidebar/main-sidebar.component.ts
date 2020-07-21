@@ -39,5 +39,11 @@ export class MainSidebarComponent implements OnInit {
       });
 
   }
+  onDebugBtnClicked(){
+    this.dialogCtrlService.openDebugDialog()
+      .subscribe(result => {
+      });
+
+  }
 
 }

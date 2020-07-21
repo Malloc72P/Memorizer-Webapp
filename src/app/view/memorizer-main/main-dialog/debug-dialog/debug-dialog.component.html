@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>디버깅 패널</h1>
+<div mat-dialog-content>
+  <p>UserDto</p>
+  <div *ngIf="tempDataMgrService.userDto !== null">
+    <h3>tempDataMgrService.userDto._id : {{tempDataMgrService.userDto._id}}</h3>
+    <h3>tempDataMgrService.userDto.userName : {{tempDataMgrService.userDto.userName}}</h3>
+    <h3>tempDataMgrService.userDto.idToken : {{tempDataMgrService.userDto.idToken}}</h3>
+    <h3>tempDataMgrService.userDto.accessToken : {{tempDataMgrService.userDto.accessToken}}</h3>
+  </div>
+
+  <p>curr Section</p>
+  <div *ngIf="tempDataMgrService.currSection !== null">
+    <h3>tempDataMgrService.currSection._id : {{tempDataMgrService.currSection._id}}</h3>
+    <h3>tempDataMgrService.currSection.title : {{tempDataMgrService.currSection.title}}</h3>
+  </div>
+
+  <p>curr Problem</p>
+  <div *ngIf="tempDataMgrService.currProblem !== null">
+    <h3>tempDataMgrService.currProblem._id : {{tempDataMgrService.currProblem._id}}</h3>
+    <h3>tempDataMgrService.currProblem.title : {{tempDataMgrService.currProblem.title}}</h3>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">닫기</button>
+</div>

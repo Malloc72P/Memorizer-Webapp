@@ -1,11 +1,17 @@
 export class UserDto {
-  public idToken;
-  public userName;
-  public authToken;
+  public _id;
+  public email      : string;
+  public regDate    : Date;
+  public idToken    : string;
+  public accessToken  : string;
+  public userName   : string;
+  public profileImg   : string;
 
-  constructor(idToken?, userName?, authToken?) {
+  constructor(email?: string, idToken?: string, accessToken?: string, userName?: string, profileImg?:string) {
+    this.email = email;
     this.idToken = idToken;
+    this.accessToken = accessToken;
     this.userName = userName;
-    this.authToken = authToken;
+    this.profileImg = profileImg;
   }
 }

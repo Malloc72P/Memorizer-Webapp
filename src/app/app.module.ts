@@ -26,6 +26,55 @@ import { CreateSectionDialogComponent } from './view/memorizer-main/main-dialog/
 import {MatDialogModule} from '@angular/material/dialog';
 import { CreateProblemDialogComponent } from './view/memorizer-main/main-dialog/create-problem-dialog/create-problem-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {RouterModule, Routes} from '@angular/router';
+import { LoginPageComponent } from './model/login-ctrl/login-page/login-page.component';
+import { LogoutPageComponent } from './model/login-ctrl/logout-page/logout-page.component';
+import { AuthProcessComponent } from './model/login-ctrl/auth-process/auth-process.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptorService} from './Controller/SocialLogin/auth-interceptor/auth-interceptor.service';
+import { DebugDialogComponent } from './view/memorizer-main/main-dialog/debug-dialog/debug-dialog.component';
+import {AuthRequestService} from './Controller/SocialLogin/auth-request/auth-request.service';
+import {TempDataMgrService} from './document/temp-data-mgr/temp-data-mgr.service';
+import {RouteCtrlService} from './model/route-ctrl/route-ctrl.service';
+import {DialogCtrlService} from './model/dialog-ctrl/dialog-ctrl.service';
+
+const appRoutes: Routes = [
+  {
+    path: 'homepage',
+    component: MemorizerMainComponent,
+    data: { title: '메모라이저' },
+  },
+  {
+    path: 'mainpage',
+    component: MemorizerMainComponent,
+    data: { title: '메모라이저' },
+  },
+  {
+    path: '',
+    redirectTo: 'mainpage',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    data: { title: 'SocialLogin' }
+  },
+  {
+    path: 'signout',
+    component: LogoutPageComponent,
+    data: { title: 'SignOut' }
+  },
+  {
+    path: 'login/success/:authToken/:idToken/:email/:userName',
+    component: AuthProcessComponent,
+    data: { title: 'Whiteboard' }
+  },
+  {
+    path: 'login/failure',
+    component: AuthProcessComponent,
+    data: { title: 'homepage' }
+  }
+];
 
 
 @NgModule({
@@ -41,11 +90,18 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ProblemCardComponent,
     CreateSectionDialogComponent,
     CreateProblemDialogComponent,
+    LoginPageComponent,
+    LogoutPageComponent,
+    AuthProcessComponent,
+    DebugDialogComponent,
   ],
   entryComponents: [
-    CreateSectionDialogComponent
+    CreateSectionDialogComponent,
+    CreateProblemDialogComponent,
+    DebugDialogComponent
   ],
   imports: [
+    RouterModule.forRoot( appRoutes ),
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -60,9 +116,20 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSlideToggleModule,
     FormsModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    AuthRequestService,
+    TempDataMgrService,
+    RouteCtrlService,
+    DialogCtrlService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
