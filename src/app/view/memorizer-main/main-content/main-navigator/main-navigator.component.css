@@ -10,4 +10,26 @@
 .main-nav-width-adjuster{
   cursor: col-resize;
 }
+.main-nav-empty-notifier-wrapper{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.main-nav-empty-notifier{
+  width: 100%;
+  padding-top: 50%;
+  text-align: center;
+}
+.main-nav-empty-notifier-item{
+  vertical-align: middle;
+}
 
+.main-nav-empty-notifier-icon{
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+}
+
+.main-nav-empty-notifier h3{
+  margin: 0;
+}

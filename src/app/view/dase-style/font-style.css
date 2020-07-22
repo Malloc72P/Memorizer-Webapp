@@ -1,0 +1,50 @@
+/*###########################################################
+이름   : reactive-heading
+사용법 : 반응형으로 헤딩 태그를 쓰고 싶을 때 사용
+   >>> 간단하게 inline-block이 적용된거니까 개행되면 어색한 텍스트를 이 클래스를 쓰는 태그로
+   >>> 묶어주면 공간이 있으면 한줄에 다 뜨고, 아니면 개행될 것임.
+*/
+.reactive-heading{
+  display: inline-block;
+}
+
+/*###########################################################
+이름   : mat-icon-vertical-aligner
+사용법 : mat-icon을 감싸는 래퍼에 적용할 것
+   >>> 만약 h3태그와 함께 각을 맞추고 싶은거라면, h3태그의 height 값에 맞게
+   >>> 래퍼의 height값을 설정해줄 것. 안그러면 래퍼의 height 값이 컨텐츠의 height 값으로 설정됨
+   >>> 그러면 그 상태에서 중앙정렬하란 소리가 되므로 효과없음
+*/
+.mat-icon-vertical-aligner{
+  vertical-align: middle;
+}
+/*###########################################################
+이름   : text-spacer-left & Right 시리즈
+사용법 : 문자의 좌우간격을 아주 약간 띄워주고 싶을 때 쓸 것
+*/
+.text-spacer-left-1{
+  margin-left: 6px;
+}
+.text-spacer-left-2{
+  margin-left: 7px;
+}
+.text-spacer-left-3{
+  margin-left: 8px;
+}
+.text-spacer-right-1{
+  margin-right: 6px;
+}
+.text-spacer-right-2{
+  margin-right: 7px;
+}
+.text-spacer-right-3{
+  margin-right: 8px;
+}
+/*###########################################################
+이름   : disable-text-select
+사용법 : 해당 텍스트가 드래그되는걸 방지하기 위한 클래스임.
+   >>> 굳이 텍스트 태그 각각에 적용할 필요 없음. 최상위래퍼에 적용하면 하위까지 다 먹음.
+*/
+.disable-text-select{
+  user-select: none;
+}

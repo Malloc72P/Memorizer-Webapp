@@ -8,7 +8,8 @@ import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-m
 @Component({
   selector: 'app-main-sidebar',
   templateUrl: './main-sidebar.component.html',
-  styleUrls: ['./main-sidebar.component.css']
+  styleUrls: ['./main-sidebar.component.css',
+  '../../../dase-style/color-style.css']
 })
 export class MainSidebarComponent implements OnInit {
 

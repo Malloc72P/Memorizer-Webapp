@@ -57,6 +57,8 @@ export class TempDataMgrService {
     this.currSectionEventEmitter = new EventEmitter<any>();
     this.currProblemEventEmitter = new EventEmitter<any>();
 
+    this.initSectionEventHandler();
+
     /*let tempUserDto = new UserDto();
     tempUserDto.idToken = 1;
     tempUserDto.userName = "ayana";
@@ -73,9 +75,11 @@ export class TempDataMgrService {
   }
 
   //초기화 관련 메서드
-  initSectionData(){
-
+  initSectionEventHandler(){
+    this.sectionListEventEmitter.subscribe((event:DocumentEvent)=>{
+    });
   }
+
 
   //유저데이터 처리 메서드
   public setUserDto(userDto:UserDto){
@@ -116,7 +120,10 @@ export class TempDataMgrService {
       if(this.currSection && this.currSection._id === sectionDto._id){
         this._currSection = null;
       }
+      //섹션을 삭제함.
       this.sectionList.delete(sectionDto._id);
+      //마지막으로 섹션이 삭제되었다는 이벤트를 발생시킴
+      this.sectionListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.DELETE, sectionDto));
     });
   }
   public updateSection(sectionDto:SectionDto){
@@ -130,6 +137,8 @@ export class TempDataMgrService {
         let foundSectionDto:SectionDto = this.sectionList.get(sectionDto._id);
         //아직 TDMS에 있는 섹션객체의 값은 안바뀐 상태이므로, api 수행이 성공하면 이를 바꿔준다.
         foundSectionDto.title = sectionDto.title;
+        //마지막으로 섹션이 수정되었다는 이벤트를 발생시킴
+        this.sectionListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, foundSectionDto));
       });
   }
   public addSection( newSection:SectionDto ){
