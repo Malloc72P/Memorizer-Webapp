@@ -10,7 +10,7 @@
 
 /*###########################################################
 이름   : mat-icon-vertical-aligner
-사용법 : mat-icon을 감싸는 래퍼에 적용할 것
+사용법 : 헤딩태그에 감싸진 mat-icon태그에 적용할 것
    >>> 만약 h3태그와 함께 각을 맞추고 싶은거라면, 우선 mat-icon을 h3태그로 감싸자
    >>> 그런 다음 mat-icon에 vertical-align : middle 속성을 주면 해결된다
    >>> 절대 center가 아니다. vertical-align 속성엔 center값 같은건 없다
