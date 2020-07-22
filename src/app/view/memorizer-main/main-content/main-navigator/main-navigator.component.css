@@ -1,13 +1,11 @@
 .main-nav-wrapper{
-  /*width: 220px;*/
   height: 100%;
   display: flex;
   flex-flow: row;
-  overflow: hidden;
-  transition: 0.2s;
 }
 .main-nav-list{
   padding-left: 6px;
+  overflow: hidden;
 }
 .main-nav-width-adjuster{
   cursor: col-resize;

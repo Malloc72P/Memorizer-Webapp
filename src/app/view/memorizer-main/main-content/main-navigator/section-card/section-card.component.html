@@ -1,7 +1,24 @@
-<div matRipple class="section-card-wrapper" (click)="onSectionCardClicked()">
+<div matRipple class="section-card-wrapper">
   <!--섹션 카드 컴포넌트-->
-  <div class="section-card-label" [ngStyle]="{ background : paletteMgrService.getColorByIndex(index) }"></div>
-  <div class="section-card-title">
-    <h3>{{sectionDto.title}}</h3>
+  <div class="section-card-left-btn" (click)="onSectionCardClicked()">
+    <div class="section-card-label"
+         [ngStyle]="{ background : paletteMgrService.getColorByIndex(index) }"></div>
+    <div class="section-card-title">
+      <h3>{{sectionDto.title}}</h3>
+    </div>
+  </div>
+
+  <span class="toolbar-spacer"
+        style="min-width: 8px"
+        (click)="onSectionCardClicked()"></span>
+
+  <div class="section-card-menu-btn">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onUpdateBtnClicked()">수정하기</button>
+      <button mat-menu-item (click)="onDeleteBtnClicked()">삭제하기</button>
+    </mat-menu>
   </div>
 </div>

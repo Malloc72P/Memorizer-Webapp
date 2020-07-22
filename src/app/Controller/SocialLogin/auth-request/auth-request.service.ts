@@ -56,7 +56,8 @@ export class AuthRequestService {
       console.log("AuthRequestService >> protectedApi >> 호출됨");
       let accessToken = localStorage.getItem('accessToken');
       this.setAuthToken(accessToken);
-      this.apiRequester.post( HttpHelper.api.protected.uri )
+      // this.apiRequester.post( HttpHelper.api.protected.uri )
+      this.apiRequester.processRequest( HttpHelper.api.protected )
         .subscribe((data)=>{
           let userDto:UserDto = new UserDto(
             data.userDto.email,
@@ -76,7 +77,7 @@ export class AuthRequestService {
     });
   }
   signOut(){
-    this.apiRequester.post(HttpHelper.api.signOut.uri,{})
+    this.apiRequester.processRequest(HttpHelper.api.signOut,{})
       .subscribe(()=>{
         this.signOutProcess();
       },(error)=>{

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
-import {SectionApiRequesterService} from '../../../../model/api-requester/section-api-requester/section-api-requester.service';
 import {DialogCtrlService} from '../../../../model/dialog-ctrl/dialog-ctrl.service';
+import {SectionDto} from '../../../../model/dto/section.dto';
+import {SectionRequesterService} from '../../../../Controller/section-requester/section-requester.service';
+import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
   selector: 'app-main-sidebar',
@@ -13,7 +15,7 @@ export class MainSidebarComponent implements OnInit {
   constructor(
     public mainViewCtrlService:MainViewCtrlService,
     public dialogCtrlService:DialogCtrlService,
-    public sectionApiRequesterService:SectionApiRequesterService
+    public tempDataMgrService:TempDataMgrService,
   ) { }
 
   ngOnInit(): void {
@@ -28,22 +30,22 @@ export class MainSidebarComponent implements OnInit {
     this.dialogCtrlService.openCreateSectionDialog()
         .subscribe(result => {
         console.log("SectionDialogCtrlService >> onCreateSecionBtnClick >> afterClosed >> result : ",result);
-        this.sectionApiRequesterService.requestCreateSection(result);
+        this.tempDataMgrService.createSection(result);
       });
   }
   onCreateProblemBtnClick(){
     this.dialogCtrlService.openCreateProblemDialog()
       .subscribe(result => {
         console.log("SectionDialogCtrlService >> onCreateProblemBtnClick >> afterClosed >> result : ",result);
-        this.sectionApiRequesterService.requestCreateProblem(result);
+        // this.sectionApiRequesterService.requestCreateProblem(result);
       });
 
   }
   onDebugBtnClicked(){
-    this.dialogCtrlService.openDebugDialog()
-      .subscribe(result => {
-      });
-
+    // this.dialogCtrlService.openDebugDialog()
+    //   .subscribe(result => {
+    //     this.tempDataMgrService.createSection(result)
+    //   });
   }
 
 }

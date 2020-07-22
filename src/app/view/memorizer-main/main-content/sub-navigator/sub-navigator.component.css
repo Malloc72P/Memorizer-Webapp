@@ -3,8 +3,7 @@
   height: 100%;
   display: flex;
   flex-flow: row;
-  overflow: hidden;
-  transition: 0.2s;
+  /*overflow: hidden;*/
 }
 .main-nav-list{
 

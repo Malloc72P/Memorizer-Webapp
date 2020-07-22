@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ProblemDto} from '../../../../model/dto/problem.dto';
+
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({

@@ -1,28 +1,54 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
+import {Subscription} from 'rxjs';
+import {SectionRequesterService} from '../../../../Controller/section-requester/section-requester.service';
+import {SectionDto} from '../../../../model/dto/section.dto';
 
 @Component({
   selector: 'app-main-navigator',
   templateUrl: './main-navigator.component.html',
   styleUrls: ['./main-navigator.component.css', '../../../dase-style/color-style.css']
 })
-export class MainNavigatorComponent implements OnInit {
+export class MainNavigatorComponent implements OnInit, OnDestroy {
   @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
+  private subscriptionList:Array<Subscription> = new Array<Subscription>();
 
   private downPosX = 0;
   private downPosY = 0;
   constructor(
     public mainViewCtrlService:MainViewCtrlService,
     public tempDataMgrService:TempDataMgrService,
+    public sectionApiRequester:SectionRequesterService
   ) {
-    this.mainViewCtrlService.mainViewActionEventEmitter
+    this.initEventHandler();
+    this.initSectionData();
+  }
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    for(let subsc of this.subscriptionList){
+      subsc.unsubscribe();
+    }
+  }
+
+  //초기화 관련 메서드
+  initEventHandler(){//이벤트 할당 메서드
+    let subsc = this.mainViewCtrlService.mainViewActionEventEmitter
       .subscribe((event:MainViewActionEvent)=>{
-      switch (event.action) {
-        case MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED:
-          this.toggleNav();
-          break;
-      }
+        switch (event.action) {
+          case MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED:
+            this.toggleNav();
+            break;
+        }
+      });
+
+    this.subscriptionList.push(subsc);
+  }
+  initSectionData(){//섹션데이터를 요청하는 메서드
+    this.sectionApiRequester.requestGetSectionList().subscribe((sectionList:Array<SectionDto>)=>{
+      this.tempDataMgrService.createSectionsBySectionList(sectionList);
     })
   }
   toggleNav(){
@@ -48,8 +74,6 @@ export class MainNavigatorComponent implements OnInit {
   //사이드바의 토글 버튼이 눌려서 숨김모드로 진입하면 false가 됨
   private isDisplayed = true;
 
-  ngOnInit(): void {
-  }
 
   onPointerDown(event){
     this.isDragging = true;

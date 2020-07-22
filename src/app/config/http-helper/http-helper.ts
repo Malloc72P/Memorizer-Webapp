@@ -1,6 +1,6 @@
 import * as ServerSetting from './ServerSetting.json';
 
-class ApiRequest {
+export class ApiRequest {
   constructor(url, requestType){
     this.uri = url;
     this.requestType = requestType;
@@ -42,6 +42,18 @@ export class HttpHelper {
     ),
     signOut: new ApiRequest(
       "/auth/signOut", ApiRequestTypeEnum.POST
+    ),
+    getSectionList: new ApiRequest(
+      "/section", ApiRequestTypeEnum.GET
+    ),
+    createSection: new ApiRequest(
+      "/section", ApiRequestTypeEnum.POST
+    ),
+    updateSection: new ApiRequest(
+      "/section", ApiRequestTypeEnum.PATCH
+    ),
+    deleteSection: new ApiRequest(
+      "/section", ApiRequestTypeEnum.DELETE
     ),
   };
 

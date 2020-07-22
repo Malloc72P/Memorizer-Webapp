@@ -2,6 +2,9 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {SectionDto} from '../../model/dto/section.dto';
 import {ProblemDto} from '../../model/dto/problem.dto';
 import {UserDto} from '../../model/dto/user.dto';
+import {SectionRequesterService} from '../../Controller/section-requester/section-requester.service';
+import {DialogCtrlService} from '../../model/dialog-ctrl/dialog-ctrl.service';
+import {AreYouSureDialogData} from '../../view/memorizer-main/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 export class DocumentEvent {
   action:DocumentEventEnum;
   data;
@@ -23,7 +26,7 @@ export class TempDataMgrService {
   /*현재 로그인된 계정주인의 정보가 여기에 저장됨*/
   private _userDto:UserDto = null;
   /*섹션 네비바에 출력될 정보임*/
-  private _sectionList:Array<SectionDto>;
+  private _sectionList:Map<any, SectionDto>;
   /*문제 네비바에 출력될 정보임*/
   private _problemList:Array<ProblemDto>;
   /*현재 선택된 섹션임*/
@@ -41,9 +44,12 @@ export class TempDataMgrService {
   /*테스트용 변수임*/
   private idGenerator = 0;
 
-  constructor() {
+  constructor(
+    public sectionRequesterService:SectionRequesterService,
+    public dialogCtrlService:DialogCtrlService,
+  ) {
 
-    this._sectionList = new Array<SectionDto>();
+    this._sectionList = new Map<any, SectionDto>();
     this._problemList = new Array<ProblemDto>();
     this.userDtoEventEmitter = new EventEmitter<any>();
     this.sectionListEventEmitter = new EventEmitter<any>();
@@ -57,21 +63,6 @@ export class TempDataMgrService {
     tempUserDto.authToken = 1;
     this._userDto = tempUserDto;*/
 
-    let newSection1 = new SectionDto();
-    newSection1._id = this.getId();
-    newSection1.title = "에밀리아";
-    this.sectionList.push(newSection1);
-
-    let newSection2 = new SectionDto();
-    newSection2._id = this.getId();
-    newSection2.title = "프레데리카";
-    this.sectionList.push(newSection2);
-
-    let newSection3 = new SectionDto();
-    newSection3._id = this.getId();
-    newSection3.title = "램";
-    this.sectionList.push(newSection3);
-
     let newProblem1 = new ProblemDto();
     newProblem1._id = this.getId();
     newProblem1.title = "EMT란?";
@@ -80,15 +71,76 @@ export class TempDataMgrService {
     newProblem1.createdDate = new Date();
     this.problemList.push(newProblem1);
   }
+
+  //초기화 관련 메서드
+  initSectionData(){
+
+  }
+
   //유저데이터 처리 메서드
   public setUserDto(userDto:UserDto){
     this._userDto = userDto;
     this.userDtoEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._userDto ))
   }
   //섹션, 문제 데이터 처리 메서드
-  public createSection( newSection:SectionDto ){
-    this._sectionList.push(newSection);
-    this.sectionListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.CREATE, newSection ));
+  public isValidSection(sectionDto:SectionDto){
+    return this.sectionList.has(sectionDto._id);
+  }
+  public showSectionModifyErrorPanel(){
+    this.dialogCtrlService.openAreYouSureDialog(new AreYouSureDialogData(
+      "수행할 수 없는 명령입니다.", "존재하지 않는 섹션입니다.", false
+    )).subscribe(()=>{});
+  }
+  public createSectionsBySectionList(sectionList:Array<SectionDto>){
+    for (let sectionDto of sectionList){
+      this.addSection(sectionDto);
+    }
+  }
+  public createSection(newSectionTitle){
+    let newSectionDto:SectionDto = new SectionDto();
+    newSectionDto.title = newSectionTitle;
+
+      this.sectionRequesterService.requestCreateSection(newSectionDto)
+        .subscribe((createdSection:SectionDto)=>{
+          this.addSection(createdSection);
+    });
+  }
+  public deleteSection(sectionDto:SectionDto){
+    //존재하지 않는 섹션이라면 수행하지 않는다.
+    if(!this.isValidSection(sectionDto)){
+      this.showSectionModifyErrorPanel();
+      return;
+    }
+
+    this.sectionRequesterService.requestDeleteSection(sectionDto).subscribe(()=>{
+      if(this.currSection && this.currSection._id === sectionDto._id){
+        this._currSection = null;
+      }
+      this.sectionList.delete(sectionDto._id);
+    });
+  }
+  public updateSection(sectionDto:SectionDto){
+    //존재하지 않는 섹션이라면 수행하지 않는다.
+    if(!this.isValidSection(sectionDto)){
+      this.showSectionModifyErrorPanel();
+      return;
+    }
+    this.sectionRequesterService.requestUpdateSection(sectionDto)
+      .subscribe(()=>{
+        let foundSectionDto:SectionDto = this.sectionList.get(sectionDto._id);
+        //아직 TDMS에 있는 섹션객체의 값은 안바뀐 상태이므로, api 수행이 성공하면 이를 바꿔준다.
+        foundSectionDto.title = sectionDto.title;
+      });
+  }
+  public addSection( newSection:SectionDto ){
+    if (!this.sectionList.has(newSection._id)) {
+      this._sectionList.set(newSection._id, newSection);
+      this.sectionListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.CREATE, newSection));
+    }
+    else if(this.sectionList.get(newSection._id).title !== newSection.title){
+      this._sectionList.set(newSection._id, newSection);
+      this.sectionListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, newSection));
+    }
   }
   public createProblem( newProblem:ProblemDto ){
     this._problemList.push(newProblem);
@@ -111,7 +163,8 @@ export class TempDataMgrService {
     return this._userDto;
   }
 
-  get sectionList(): Array<SectionDto> {
+
+  get sectionList(): Map<any, SectionDto> {
     return this._sectionList;
   }
 

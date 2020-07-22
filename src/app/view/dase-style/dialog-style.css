@@ -1,0 +1,5 @@
+.dialog-btn-wrapper{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}

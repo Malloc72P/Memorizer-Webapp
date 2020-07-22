@@ -37,6 +37,9 @@ import {AuthRequestService} from './Controller/SocialLogin/auth-request/auth-req
 import {TempDataMgrService} from './document/temp-data-mgr/temp-data-mgr.service';
 import {RouteCtrlService} from './model/route-ctrl/route-ctrl.service';
 import {DialogCtrlService} from './model/dialog-ctrl/dialog-ctrl.service';
+import {MatMenuModule} from '@angular/material/menu';
+import { AreYouSureDialogComponent } from './view/memorizer-main/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
+import {UpdateSectionDialogComponent} from './view/memorizer-main/main-dialog/update-section-dialog/update-section-dialog.component';
 
 const appRoutes: Routes = [
   {
@@ -89,19 +92,23 @@ const appRoutes: Routes = [
     SubNavigatorComponent,
     ProblemCardComponent,
     CreateSectionDialogComponent,
+    UpdateSectionDialogComponent,
     CreateProblemDialogComponent,
     LoginPageComponent,
     LogoutPageComponent,
     AuthProcessComponent,
     DebugDialogComponent,
+    AreYouSureDialogComponent,
   ],
   entryComponents: [
     CreateSectionDialogComponent,
+    UpdateSectionDialogComponent,
     CreateProblemDialogComponent,
-    DebugDialogComponent
+    // DebugDialogComponent,
+    AreYouSureDialogComponent
   ],
   imports: [
-    RouterModule.forRoot( appRoutes ),
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -117,7 +124,8 @@ const appRoutes: Routes = [
     FormsModule,
     MatDialogModule,
     MatTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule
   ],
   providers: [
     {

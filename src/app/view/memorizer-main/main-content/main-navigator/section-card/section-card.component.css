@@ -5,10 +5,16 @@
   flex-flow: row;
   margin-bottom: 8px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 .section-card-wrapper:hover{
   background: lightpink;
+}
+.section-card-left-btn{
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .section-card-label{
   min-width: 8px;
@@ -16,12 +22,16 @@
 }
 .section-card-title{
   padding: 3px 5px 3px 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  user-select: none;
+  /*width: 70%;*/
 }
 .section-card-title h3{
   line-height: 32px;
   margin: 0;
+}
+.section-card-menu-btn{
+
+}
+.section-card-menu-btn button{
+  min-width: 32px;
+  padding: 0;
 }
