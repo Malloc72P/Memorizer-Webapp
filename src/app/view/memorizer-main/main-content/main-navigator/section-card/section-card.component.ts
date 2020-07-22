@@ -11,7 +11,7 @@ import {UpdateSectionDialogData} from '../../../main-dialog/update-section-dialo
   selector: 'app-section-card',
   templateUrl: './section-card.component.html',
   styleUrls: ['./section-card.component.css',
-    '../../../../dase-style/color-style.css',
+    '../../../../dase-style/color-style.scss',
     '../../../../dase-style/toolbar-style.css']
 })
 export class SectionCardComponent implements OnInit {

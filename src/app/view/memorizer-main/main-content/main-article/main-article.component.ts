@@ -5,7 +5,7 @@ import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-m
 @Component({
   selector: 'app-main-article',
   templateUrl: './main-article.component.html',
-  styleUrls: ['./main-article.component.css', '../../../dase-style/color-style.css', '../../../dase-style/toolbar-style.css']
+  styleUrls: ['./main-article.component.css', '../../../dase-style/color-style.scss', '../../../dase-style/toolbar-style.css']
 })
 export class MainArticleComponent implements OnInit {
   public currInputerMode = "whiteboard";

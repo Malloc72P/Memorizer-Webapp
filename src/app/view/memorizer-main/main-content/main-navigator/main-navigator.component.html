@@ -4,13 +4,14 @@
   <!--섹션이 아무것도 없으면 뜨는 태그-->
   <div class="main-nav-empty-notifier disable-text-select grey-background-4" *ngIf="tempDataMgrService.sectionList.size === 0">
     <mat-icon class="main-nav-empty-notifier-icon">cloud_off</mat-icon>
-    <div class="main-nav-empty-notifier-item"><h3>섹션 목록이</h3></div>
-    <div class="main-nav-empty-notifier-item"><h3>텅 비었어요.</h3></div>
-    <div class="main-nav-empty-notifier-item reactive-heading text-spacer-right-1"><h3>좌측의</h3></div>
-    <div class="main-nav-empty-notifier-item reactive-heading"><mat-icon>create_new_folder</mat-icon></div>
-    <div class="main-nav-empty-notifier-item reactive-heading text-spacer-left-1"><h3>버튼을 눌러서</h3></div>
-    <div class="main-nav-empty-notifier-item"><h3>섹션을</h3></div>
-    <div class="main-nav-empty-notifier-item"><h3>만들 수 있어요</h3></div>
+    <h3>섹션 목록이</h3>
+    <h3>텅 비었어요.</h3>
+    <h3 class="reactive-heading text-spacer-right-1">좌측의</h3>
+    <h3 class="reactive-heading mat-icon-vertical-aligner"><mat-icon>create_new_folder</mat-icon></h3>
+    <h3 class="reactive-heading text-spacer-left-1">버튼을 눌러서</h3>
+    <br>
+    <h3 class="reactive-heading text-spacer-right-1">섹션을</h3>
+    <h3 class="reactive-heading">만들 수 있어요</h3>
   </div>
   <!--섹션 리스트-->
   <div [ngStyle]="{'width' : (navWidth - adjusterSize) + 'px'}"

@@ -9,8 +9,8 @@ import {SectionDto} from '../../../../model/dto/section.dto';
   selector: 'app-main-navigator',
   templateUrl: './main-navigator.component.html',
   styleUrls: ['./main-navigator.component.css',
-    '../../../dase-style/color-style.css',
-    '../../../dase-style/font-style.css',
+    '../../../dase-style/color-style.scss',
+    '../../../dase-style/font-style.scss',
   ]
 })
 export class MainNavigatorComponent implements OnInit, OnDestroy {

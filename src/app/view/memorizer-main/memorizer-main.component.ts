@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-memorizer-main',
   templateUrl: './memorizer-main.component.html',
   styleUrls: ['./memorizer-main.component.css',
-              '../dase-style/color-style.css']
+              '../dase-style/color-style.scss']
 })
 export class MemorizerMainComponent implements OnInit {
 

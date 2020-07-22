@@ -8,7 +8,7 @@ import {HttpHelper} from '../../../config/http-helper/http-helper';
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.css',
               '../../dase-style/toolbar-style.css',
-              '../../dase-style/color-style.css'
+              '../../dase-style/color-style.scss'
   ]
 })
 export class MainHeaderComponent implements OnInit {

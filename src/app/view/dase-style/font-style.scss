@@ -11,9 +11,9 @@
 /*###########################################################
 이름   : mat-icon-vertical-aligner
 사용법 : mat-icon을 감싸는 래퍼에 적용할 것
-   >>> 만약 h3태그와 함께 각을 맞추고 싶은거라면, h3태그의 height 값에 맞게
-   >>> 래퍼의 height값을 설정해줄 것. 안그러면 래퍼의 height 값이 컨텐츠의 height 값으로 설정됨
-   >>> 그러면 그 상태에서 중앙정렬하란 소리가 되므로 효과없음
+   >>> 만약 h3태그와 함께 각을 맞추고 싶은거라면, 우선 mat-icon을 h3태그로 감싸자
+   >>> 그런 다음 mat-icon에 vertical-align : middle 속성을 주면 해결된다
+   >>> 절대 center가 아니다. vertical-align 속성엔 center값 같은건 없다
 */
 .mat-icon-vertical-aligner{
   vertical-align: middle;
@@ -21,25 +21,28 @@
 /*###########################################################
 이름   : text-spacer-left & Right 시리즈
 사용법 : 문자의 좌우간격을 아주 약간 띄워주고 싶을 때 쓸 것
+  >>> 아래의 빈 클래스는 자동완성을 위한 클래스임
+  >>> h3정도면 1단계가 딱 띄어쓰기 한 정도의 크기일거임. 아마도
 */
-.text-spacer-left-1{
-  margin-left: 6px;
+.text-spacer-left-{}
+.text-spacer-right-{}
+$i : 1;
+$textSpacerStartValue : 3;
+@while $i <= 10{
+  .text-spacer-left-#{$i}{
+    margin-left: $textSpacerStartValue + $i + px;
+  }
+  $i : $i + 1;
 }
-.text-spacer-left-2{
-  margin-left: 7px;
+
+$i : 1;
+@while $i <= 10{
+  .text-spacer-right-#{$i}{
+    margin-right: $textSpacerStartValue + $i + px;
+  }
+  $i : $i + 1;
 }
-.text-spacer-left-3{
-  margin-left: 8px;
-}
-.text-spacer-right-1{
-  margin-right: 6px;
-}
-.text-spacer-right-2{
-  margin-right: 7px;
-}
-.text-spacer-right-3{
-  margin-right: 8px;
-}
+
 /*###########################################################
 이름   : disable-text-select
 사용법 : 해당 텍스트가 드래그되는걸 방지하기 위한 클래스임.
