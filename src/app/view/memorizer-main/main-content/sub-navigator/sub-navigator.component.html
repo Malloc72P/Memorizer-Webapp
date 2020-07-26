@@ -1,17 +1,28 @@
 <div #sidebarIdentifier [ngStyle]="{'width' : navWidth + 'px'}"
-     class="main-nav-wrapper">
+     class="sub-nav-wrapper">
   <!--토글버튼 있는 사이드바 바로 오른쪽에 있는 네비게이터. 여기에 카테고리가 표시됨-->
+
+  <div class="sub-nav-empty-notifier disable-text-select grey-background-4"
+       *ngIf="tempDataMgrService.problemList.size === 0">
+    <mat-icon class="sub-nav-empty-notifier-icon">cloud_off</mat-icon>
+    <h3>문제 목록이</h3>
+    <h3>텅 비었어요.</h3>
+    <h3 class="reactive-heading text-spacer-right-1">원하시는</h3>
+    <h3 class="reactive-heading text-spacer-right-1">섹션을</h3>
+    <h3 class="reactive-heading text-spacer-right-1">선택해주세요</h3>
+  </div>
 
   <!--아이템 리스트-->
   <div [ngStyle]="{'width' : (navWidth - adjusterSize) + 'px'}"
-       class="main-nav-list light-box-shadow grey-background-4">
-      <app-problem-card *ngFor="let problemDto of tempDataMgrService.problemList"
-                        [problemDto]="problemDto">
+       *ngIf="tempDataMgrService.problemList.size !== 0"
+       class="sub-nav-list light-box-shadow grey-background-4">
+      <app-problem-card *ngFor="let problemDto of tempDataMgrService.problemList | keyvalue"
+                        [problemDto]="problemDto.value">
       </app-problem-card>
   </div>
 
   <!--가로길이 조정기-->
-  <div class="main-nav-width-adjuster"
+  <div class="sub-nav-width-adjuster"
        (pointerdown)="onPointerDown($event)"
        [ngStyle]="{'width' : adjusterSize + 'px'}"></div>
 </div>

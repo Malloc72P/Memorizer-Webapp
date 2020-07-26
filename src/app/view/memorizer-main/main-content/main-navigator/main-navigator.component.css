@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   flex-flow: row;
+  overflow: hidden;
 }
 .main-nav-list{
   padding-left: 6px;

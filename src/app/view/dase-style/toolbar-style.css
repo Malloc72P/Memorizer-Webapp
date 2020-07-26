@@ -12,6 +12,10 @@
   .toolbar-title{
     display: inline-block;
   }
+  .toolbar-btn{
+    min-width: 32px;
+    padding: 0;
+  }
 /*툴바 아이템 사이에 공간을 차지하는 용도의 스타일*/
 .toolbar-spacer{
   flex: 1;

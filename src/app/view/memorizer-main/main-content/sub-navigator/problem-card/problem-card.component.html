@@ -1,5 +1,13 @@
-<div matRipple class="problem-card-wrapper" (click)="onProblemCardClicked()">
-  <div class="problem-card-title">
+<div matRipple class="problem-card-wrapper"
+     [ngClass]="{ 'problem-card-selected' : tempDataMgrService.currProblem && (tempDataMgrService.currProblem._id === problemDto._id) }">
+  <div class="problem-card-title" (click)="onProblemCardClicked()">
     <h3>{{problemDto.title}}</h3>
   </div>
+  <span class="toolbar-spacer" (click)="onProblemCardClicked()"></span>
+  <button mat-button [matMenuTriggerFor]="menu"
+          class="toolbar-btn"><mat-icon>more_vert</mat-icon></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onUpdateProblemBtnClicked()">수정하기</button>
+    <button mat-menu-item (click)="onDeleteProblemBtnClicked()">삭제하기</button>
+  </mat-menu>
 </div>

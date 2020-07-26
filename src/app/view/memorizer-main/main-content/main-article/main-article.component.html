@@ -86,11 +86,20 @@
   </div>
 
   <!--정답 부분-->
-  <div *ngIf="isAnswerViewingMode" class="article-problem-answer">
-    <h1>정답 : </h1>
-    <h1>{{tempDataMgrService.currProblem.answer}}</h1>
+  <mat-card *ngIf="isAnswerViewingMode" class="article-problem-answer">
+    <h4 style="font-weight: bold">정답</h4>
+    <mat-card-content class="grey-background-3 light-box-shadow"
+                      style="border-left: 8px solid red; padding: 12px 16px 12px 12px;">
+      {{tempDataMgrService.currProblem.answer}}
+    </mat-card-content>
+    <br>
     <mat-divider></mat-divider>
-  </div>
+    <br>
+    <button mat-raised-button (click)="onCorrectBtnClicked()"
+            color="primary" style="margin-right: 24px;">맞췄어요!</button>
+    <button mat-raised-button (click)="onIncorrectBtnClicked()"
+            color="warn">틀렸어요...</button>
+  </mat-card>
 </div>
 
 <div class="main-article-wrapper" *ngIf="!tempDataMgrService.currProblem">

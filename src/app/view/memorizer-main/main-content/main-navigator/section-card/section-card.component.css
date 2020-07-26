@@ -10,6 +10,9 @@
 .section-card-wrapper:hover{
   background: lightpink;
 }
+.section-card-selected{
+  background: lightpink;
+}
 .section-card-left-btn{
   display: flex;
   overflow: hidden;

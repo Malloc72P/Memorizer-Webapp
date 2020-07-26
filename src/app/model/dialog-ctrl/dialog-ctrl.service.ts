@@ -13,6 +13,10 @@ import {
   UpdateSectionDialogData
 } from '../../view/memorizer-main/main-dialog/update-section-dialog/update-section-dialog.component';
 import {SectionDto} from '../dto/section.dto';
+import {
+  UpdateProblemDialogComponent,
+  UpdateProblemDialogData
+} from '../../view/memorizer-main/main-dialog/update-problem-dialog/update-problem-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +49,15 @@ export class DialogCtrlService {
     });
     return dialogRef.afterClosed();
   }
+  openUpdateProblemDialog(updateProblemDialogData:UpdateProblemDialogData): Observable<any> {
+    const dialogRef = this.dialog.open(UpdateProblemDialogComponent, {
+      width: '400px',
+      data: updateProblemDialogData
+    });
+
+    return dialogRef.afterClosed();
+  }
+
   openDebugDialog(){
     // const dialogRef = this.dialog.open(DebugDialogComponent, {
     //   width: '720px',

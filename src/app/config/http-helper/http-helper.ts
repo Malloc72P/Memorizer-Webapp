@@ -55,6 +55,24 @@ export class HttpHelper {
     deleteSection: new ApiRequest(
       "/section", ApiRequestTypeEnum.DELETE
     ),
+    getProblemList: new ApiRequest(
+      "/problem", ApiRequestTypeEnum.GET
+    ),
+    createProblem: new ApiRequest(
+      "/problem", ApiRequestTypeEnum.POST
+    ),
+    updateProblem: new ApiRequest(
+      "/problem", ApiRequestTypeEnum.PATCH
+    ),
+    increaseCorrectCntOfProblem: new ApiRequest(
+      "/problem/increaseCorrectCount", ApiRequestTypeEnum.PATCH
+    ),
+    increaseIncorrectCntOfProblem: new ApiRequest(
+      "/problem/increaseIncorrectCount", ApiRequestTypeEnum.PATCH
+    ),
+    deleteProblem: new ApiRequest(
+      "/problem", ApiRequestTypeEnum.DELETE
+    ),
   };
 
   public static getContentType(){

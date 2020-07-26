@@ -40,6 +40,9 @@ import {DialogCtrlService} from './model/dialog-ctrl/dialog-ctrl.service';
 import {MatMenuModule} from '@angular/material/menu';
 import { AreYouSureDialogComponent } from './view/memorizer-main/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 import {UpdateSectionDialogComponent} from './view/memorizer-main/main-dialog/update-section-dialog/update-section-dialog.component';
+import { UpdateProblemDialogComponent } from './view/memorizer-main/main-dialog/update-problem-dialog/update-problem-dialog.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCardModule} from '@angular/material/card';
 
 const appRoutes: Routes = [
   {
@@ -99,11 +102,13 @@ const appRoutes: Routes = [
     AuthProcessComponent,
     DebugDialogComponent,
     AreYouSureDialogComponent,
+    UpdateProblemDialogComponent,
   ],
   entryComponents: [
     CreateSectionDialogComponent,
     UpdateSectionDialogComponent,
     CreateProblemDialogComponent,
+    UpdateProblemDialogComponent,
     // DebugDialogComponent,
     AreYouSureDialogComponent
   ],
@@ -125,7 +130,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatTooltipModule,
     HttpClientModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSliderModule,
+    MatCardModule
   ],
   providers: [
     {

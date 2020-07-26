@@ -2,7 +2,8 @@
   class="main-nav-wrapper">
   <!--토글버튼 있는 사이드바 바로 오른쪽에 있는 네비게이터. 여기에 카테고리가 표시됨-->
   <!--섹션이 아무것도 없으면 뜨는 태그-->
-  <div class="main-nav-empty-notifier disable-text-select grey-background-4" *ngIf="tempDataMgrService.sectionList.size === 0">
+  <div class="main-nav-empty-notifier disable-text-select grey-background-4"
+       *ngIf="tempDataMgrService.sectionList.size === 0">
     <mat-icon class="main-nav-empty-notifier-icon">cloud_off</mat-icon>
     <h3>섹션 목록이</h3>
     <h3>텅 비었어요.</h3>

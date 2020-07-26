@@ -1,15 +1,31 @@
-.main-nav-wrapper{
+.sub-nav-wrapper{
   /*width: 220px;*/
   height: 100%;
   display: flex;
   flex-flow: row;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
-.main-nav-list{
-
+.sub-nav-list{
+  padding-left: 8px;
 }
-.main-nav-width-adjuster{
+.sub-nav-width-adjuster{
   cursor: col-resize;
 }
 
+.sub-nav-empty-notifier{
+  width: 100%;
+  padding-top: 50%;
+  text-align: center;
+}
+.sub-nav-empty-notifier-item{
+  vertical-align: middle;
+}
 
+.sub-nav-empty-notifier-icon{
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+}
+.sub-nav-empty-notifier h3{
+  margin-bottom: 0;
+}

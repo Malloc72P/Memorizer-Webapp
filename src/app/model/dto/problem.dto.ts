@@ -1,36 +1,57 @@
 export class ProblemDto {
   public _id;
   public owner;
-  public createdDate;
-  public questionedCount;
-  public correctCount;
-  public incorrectCount;
   public title;
+
+  //소속된 섹션
+  public belongingSectionId;
+
+  public createdDate;
+  //출제된 횟수
+  public questionedCount;
+  //맞춘 횟수
+  public correctCount;
+  //틀린 횟수
+  public incorrectCount;
+  //문제 지문
   public question;
+  //문제 정답
   public answer;
 
-  constructor(id?, owner?, createdDate?, questionedCount?, correctCount?, incorrectCount?, title?, question?, answer?) {
+  //현재 출제간격
+  public currQuestionStep;
+  //최근 출제한 날짜
+  public recentlyQuestionedDate;
+
+
+  constructor(id?, owner?, title?, belongingSectionId?, createdDate?, questionedCount?, correctCount?, incorrectCount?, question?, answer?, currQuestionStep?, recentlyQuestionedDate?) {
     this._id = id;
     this.owner = owner;
-    this.createdDate = createdDate;
     this.title = title;
+    this.belongingSectionId = belongingSectionId;
+    this.createdDate = createdDate;
+    this.questionedCount = questionedCount;
+    this.correctCount = correctCount;
+    this.incorrectCount = incorrectCount;
     this.question = question;
     this.answer = answer;
-
-    if (questionedCount) {
-      this.questionedCount = questionedCount;
-    } else {
-      this.questionedCount = 0;
-    }
-    if (correctCount) {
-      this.correctCount = correctCount;
-    } else {
-      this.correctCount = 0;
-    }
-    if (incorrectCount) {
-      this.incorrectCount = incorrectCount;
-    } else {
-      this.incorrectCount = 0;
-    }
+    this.currQuestionStep = currQuestionStep;
+    this.recentlyQuestionedDate = recentlyQuestionedDate;
+  }
+  public static duplicateIt(problemDto:ProblemDto){
+    return new ProblemDto(
+      problemDto._id.slice(),
+      problemDto.owner.slice(),
+      problemDto.title.slice(),
+      problemDto.belongingSectionId.slice(),
+      problemDto.createdDate,
+      problemDto.questionedCount,
+      problemDto.correctCount,
+      problemDto.incorrectCount,
+      problemDto.question,
+      problemDto.answer,
+      problemDto.currQuestionStep,
+      problemDto.recentlyQuestionedDate,
+    )
   }
 }

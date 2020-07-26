@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemorizerMainComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log("MemorizerMainComponent >> constructor >> new Date() : ",new Date());
+  }
 
   ngOnInit(): void {
   }

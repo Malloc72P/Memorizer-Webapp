@@ -40,7 +40,7 @@
   padding-left: 16px;
   /*padding-right: 16px;*/
 }
-.article-problem-question, .article-problem-answer{
+.article-problem-question{
   display: flex;
   flex-flow: row;
 }
@@ -95,4 +95,8 @@
 }
 .article-problem-submit-button{
   margin-top: 30px;
+}
+.article-problem-answer{
+  width: 89%;
+  margin-top: 22px;
 }

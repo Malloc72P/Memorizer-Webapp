@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>문제 수정하기</h1>
+<div mat-dialog-content>
+  <p>문제 정보를 입력해주세요</p>
+  <mat-form-field>
+    <mat-label>문제 이름</mat-label>
+    <input matInput [(ngModel)]="newProblemDto.title">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>문제 지문</mat-label>
+    <input matInput [(ngModel)]="newProblemDto.question">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>문제 정답</mat-label>
+    <input matInput [(ngModel)]="newProblemDto.answer">
+  </mat-form-field>
+  <br>
+  <mat-label>현재 출제 간격 레벨</mat-label>
+  <br>
+  <mat-slider min="0"
+              max="10"
+              thumbLabel="thumbLabel"
+              tickInterval="1"
+              [(ngModel)]="newProblemDto.currQuestionStep">
+  </mat-slider>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCreateBtnClick()">수정하기</button>
+</div>

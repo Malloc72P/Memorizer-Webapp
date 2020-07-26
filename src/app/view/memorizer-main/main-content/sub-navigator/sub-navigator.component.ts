@@ -5,7 +5,11 @@ import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-m
 @Component({
   selector: 'app-sub-navigator',
   templateUrl: './sub-navigator.component.html',
-  styleUrls: ['./sub-navigator.component.css', '../../../dase-style/color-style.scss']
+  styleUrls: [
+    './sub-navigator.component.css',
+    '../../../dase-style/color-style.scss',
+    '../../../dase-style/font-style.scss',
+  ]
 })
 export class SubNavigatorComponent implements OnInit {
 

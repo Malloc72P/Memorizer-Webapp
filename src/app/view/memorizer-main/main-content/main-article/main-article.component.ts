@@ -20,6 +20,13 @@ export class MainArticleComponent implements OnInit {
 
   }
 
+  //문제풀이관련 메서드
+  onCorrectBtnClicked(){
+    this.tempDataMgrService.increaseCorrectCntOfProblem(this.tempDataMgrService.currProblem);
+  }
+  onIncorrectBtnClicked(){
+    this.tempDataMgrService.increaseIncorrectCntOfProblem(this.tempDataMgrService.currProblem);
+  }
 
   /*화이트보드 동작제어 메서드*/
   clear(){

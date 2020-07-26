@@ -26,7 +26,7 @@ export class SectionCardComponent implements OnInit {
   ngOnInit(): void {
   }
   onSectionCardClicked(){
-    // this.tempDataMgrService.selectSection(this.sectionDto);
+    this.tempDataMgrService.selectSection(this.sectionDto);
   }
   onUpdateBtnClicked(){
     this.dialogCtrlService.openUpdateSectionDialog(new UpdateSectionDialogData(this.sectionDto))
