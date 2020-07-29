@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AuthRequestService} from '../auth-request/auth-request.service';
+
 import {HttpEvent, HttpHandler, HttpRequest, HttpInterceptor} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
