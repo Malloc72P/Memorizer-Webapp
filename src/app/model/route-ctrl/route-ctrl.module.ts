@@ -6,6 +6,7 @@ import {MemorizerMainComponent} from '../../view/memorizer-main/memorizer-main.c
 import {LoginPageComponent} from '../../view/memorizer-account-mgr/login-page/login-page.component';
 import {LogoutPageComponent} from '../../view/memorizer-account-mgr/logout-page/logout-page.component';
 import {AuthProcessComponent} from '../../view/memorizer-account-mgr/auth-process/auth-process.component';
+import {DiscordLinkProcessComponent} from '../../view/memorizer-account-mgr/discord-link-process/discord-link-process.component';
 
 const appRoutes: Routes = [
   {
@@ -42,6 +43,11 @@ const appRoutes: Routes = [
     path: 'login/failure',
     component: AuthProcessComponent,
     data: { title: 'homepage' }
+  },
+  {
+    path: 'discord/linking/:discordDataOID',
+    component: DiscordLinkProcessComponent,
+    data: { title: 'discordLinking' }
   }
 ];
 
