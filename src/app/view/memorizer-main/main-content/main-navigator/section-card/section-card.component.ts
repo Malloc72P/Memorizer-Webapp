@@ -2,10 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SectionDto} from '../../../../../model/dto/section.dto';
 import {PaletteMgrService} from '../../../../../model/palette-mgr/palette-mgr.service';
 import {TempDataMgrService} from '../../../../../document/temp-data-mgr/temp-data-mgr.service';
-import {DialogCtrlService} from '../../../../../model/dialog-ctrl/dialog-ctrl.service';
-import {AreYouSureDialogData} from '../../../main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
-import {SectionRequesterService} from '../../../../../Controller/section-requester/section-requester.service';
-import {UpdateSectionDialogData} from '../../../main-dialog/update-section-dialog/update-section-dialog.component';
+import {DialogCtrlService} from '../../../../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
+import {AreYouSureDialogData} from '../../../../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
+import {UpdateSectionDialogData} from '../../../../memorizer-dialog/main-dialog/update-section-dialog/update-section-dialog.component';
 
 @Component({
   selector: 'app-section-card',

@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
+import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class SubNavigatorComponent implements OnInit {
   @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
 
   constructor(
-    public mainViewCtrlService:MainViewCtrlService,
+    public mainViewCtrlService:MainActionCtrlService,
     public tempDataMgrService:TempDataMgrService
   ) {
     this.mainViewCtrlService.mainViewActionEventEmitter

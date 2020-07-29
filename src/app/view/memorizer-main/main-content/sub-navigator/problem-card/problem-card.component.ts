@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProblemDto} from '../../../../../model/dto/problem.dto';
 import {TempDataMgrService} from '../../../../../document/temp-data-mgr/temp-data-mgr.service';
-import {DialogCtrlService} from '../../../../../model/dialog-ctrl/dialog-ctrl.service';
-import {UpdateProblemDialogData} from '../../../main-dialog/update-problem-dialog/update-problem-dialog.component';
+import {DialogCtrlService} from '../../../../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
+import {UpdateProblemDialogData} from '../../../../memorizer-dialog/main-dialog/update-problem-dialog/update-problem-dialog.component';
 
 @Component({
   selector: 'app-problem-card',

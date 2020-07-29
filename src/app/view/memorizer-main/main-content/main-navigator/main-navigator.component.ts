@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
+import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {Subscription} from 'rxjs';
 import {SectionRequesterService} from '../../../../Controller/section-requester/section-requester.service';
@@ -20,7 +20,7 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
   private downPosX = 0;
   private downPosY = 0;
   constructor(
-    public mainViewCtrlService:MainViewCtrlService,
+    public mainViewCtrlService:MainActionCtrlService,
     public tempDataMgrService:TempDataMgrService,
     public sectionApiRequester:SectionRequesterService
   ) {

@@ -16,7 +16,7 @@ export enum MainViewActionEventEnum {
 @Injectable({
   providedIn: 'root'
 })
-export class MainViewCtrlService {
+export class MainActionCtrlService {
   public mainViewActionEventEmitter:EventEmitter<any>;
   constructor() {
     this.mainViewActionEventEmitter = new EventEmitter<any>();

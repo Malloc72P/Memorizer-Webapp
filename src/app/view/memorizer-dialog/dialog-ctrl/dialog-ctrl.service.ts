@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
-import {CreateSectionDialogComponent} from '../../view/memorizer-main/main-dialog/create-section-dialog/create-section-dialog.component';
-import {CreateProblemDialogComponent} from '../../view/memorizer-main/main-dialog/create-problem-dialog/create-problem-dialog.component';
+import {CreateSectionDialogComponent} from '../main-dialog/create-section-dialog/create-section-dialog.component';
+import {CreateProblemDialogComponent} from '../main-dialog/create-problem-dialog/create-problem-dialog.component';
 
 import {
   AreYouSureDialogComponent,
   AreYouSureDialogData
-} from '../../view/memorizer-main/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
+} from '../main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 import {
   UpdateSectionDialogComponent,
   UpdateSectionDialogData
-} from '../../view/memorizer-main/main-dialog/update-section-dialog/update-section-dialog.component';
-import {SectionDto} from '../dto/section.dto';
+} from '../main-dialog/update-section-dialog/update-section-dialog.component';
+import {SectionDto} from '../../../model/dto/section.dto';
 import {
   UpdateProblemDialogComponent,
   UpdateProblemDialogData
-} from '../../view/memorizer-main/main-dialog/update-problem-dialog/update-problem-dialog.component';
+} from '../main-dialog/update-problem-dialog/update-problem-dialog.component';
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MainViewActionEvent, MainViewActionEventEnum, MainViewCtrlService} from '../../../../model/main-action-ctrl/main-view-ctrl.service';
-import {DialogCtrlService} from '../../../../model/dialog-ctrl/dialog-ctrl.service';
+import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
+import {DialogCtrlService} from '../../../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
 import {SectionDto} from '../../../../model/dto/section.dto';
 import {SectionRequesterService} from '../../../../Controller/section-requester/section-requester.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {ProblemRequesterService} from '../../../../Controller/problem-requester/problem-requester.service';
-import {AreYouSureDialogData} from '../../main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
+import {AreYouSureDialogData} from '../../../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 
 @Component({
   selector: 'app-main-sidebar',
@@ -16,7 +16,7 @@ import {AreYouSureDialogData} from '../../main-dialog/are-you-sure-dialog/are-yo
 export class MainSidebarComponent implements OnInit {
 
   constructor(
-    public mainViewCtrlService:MainViewCtrlService,
+    public mainViewCtrlService:MainActionCtrlService,
     public dialogCtrlService:DialogCtrlService,
     public tempDataMgrService:TempDataMgrService,
     public problemRequester:ProblemRequesterService

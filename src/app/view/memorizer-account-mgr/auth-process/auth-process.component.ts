@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthRequestService} from '../../../Controller/SocialLogin/auth-request/auth-request.service';
-import {UserDto} from '../../dto/user.dto';
+import {UserDto} from '../../../model/dto/user.dto';
 
 @Component({
   selector: 'app-auth-process',

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MainViewCtrlService } from './main-view-ctrl.service';
+import { MainActionCtrlService } from './main-action-ctrl.service';
 
 describe('MainViewCtrlService', () => {
-  let service: MainViewCtrlService;
+  let service: MainActionCtrlService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MainViewCtrlService);
+    service = TestBed.inject(MainActionCtrlService);
   });
 
   it('should be created', () => {
