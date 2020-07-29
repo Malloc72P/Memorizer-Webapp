@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TempDataMgrService} from './temp-data-mgr/temp-data-mgr.service';
-import {ControllerModule} from '../Controller/controller.module';
+import {ControllerModule} from '../controller/controller.module';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    ControllerModule
+    CommonModule
   ],
   providers : [
     TempDataMgrService,

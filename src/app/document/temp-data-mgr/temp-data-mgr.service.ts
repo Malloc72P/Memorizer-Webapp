@@ -2,10 +2,10 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {SectionDto} from '../../model/dto/section.dto';
 import {ProblemDto} from '../../model/dto/problem.dto';
 import {UserDto} from '../../model/dto/user.dto';
-import {SectionRequesterService} from '../../Controller/section-requester/section-requester.service';
+import {SectionRequesterService} from '../../controller/memorizer-controller/section-requester/section-requester.service';
 import {DialogCtrlService} from '../../view/memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
 import {AreYouSureDialogData} from '../../view/memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
-import {ProblemRequesterService} from '../../Controller/problem-requester/problem-requester.service';
+import {ProblemRequesterService} from '../../controller/memorizer-controller/problem-requester/problem-requester.service';
 export class DocumentEvent {
   action:DocumentEventEnum;
   data;

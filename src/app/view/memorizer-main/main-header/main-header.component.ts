@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TempDataMgrService} from '../../../document/temp-data-mgr/temp-data-mgr.service';
-import {AuthRequestService} from '../../../Controller/SocialLogin/auth-request/auth-request.service';
+import {AuthRequestService} from '../../../controller/SocialLogin/auth-request/auth-request.service';
 import {HttpHelper} from '../../../config/http-helper/http-helper';
 
 @Component({

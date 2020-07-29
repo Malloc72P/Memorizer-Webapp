@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {DialogCtrlService} from '../../../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
 import {SectionDto} from '../../../../model/dto/section.dto';
-import {SectionRequesterService} from '../../../../Controller/section-requester/section-requester.service';
+import {SectionRequesterService} from '../../../../controller/memorizer-controller/section-requester/section-requester.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
-import {ProblemRequesterService} from '../../../../Controller/problem-requester/problem-requester.service';
+import {ProblemRequesterService} from '../../../../controller/memorizer-controller/problem-requester/problem-requester.service';
 import {AreYouSureDialogData} from '../../../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 
 @Component({

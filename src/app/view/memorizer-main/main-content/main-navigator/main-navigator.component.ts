@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, V
 import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {Subscription} from 'rxjs';
-import {SectionRequesterService} from '../../../../Controller/section-requester/section-requester.service';
+import {SectionRequesterService} from '../../../../controller/memorizer-controller/section-requester/section-requester.service';
 import {SectionDto} from '../../../../model/dto/section.dto';
 
 @Component({

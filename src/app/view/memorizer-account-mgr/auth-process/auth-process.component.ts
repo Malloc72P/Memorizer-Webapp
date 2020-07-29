@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthRequestService} from '../../../Controller/SocialLogin/auth-request/auth-request.service';
+import {AuthRequestService} from '../../../controller/SocialLogin/auth-request/auth-request.service';
 import {UserDto} from '../../../model/dto/user.dto';
 
 @Component({

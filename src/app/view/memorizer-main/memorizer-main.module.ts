@@ -16,9 +16,17 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatRippleModule} from '@angular/material/core';
 import {DocumentModule} from '../../document/document.module';
-import {ControllerModule} from '../../Controller/controller.module';
 import {MemorizerDialogModule} from '../memorizer-dialog/memorizer-dialog.module';
 import {NgWhiteboardModule} from 'ng-whiteboard';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {FormsModule} from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -27,7 +35,6 @@ import {NgWhiteboardModule} from 'ng-whiteboard';
     MemorizerDialogModule,
     CommonModule,
     DocumentModule,
-    ControllerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -35,6 +42,15 @@ import {NgWhiteboardModule} from 'ng-whiteboard';
     MatMenuModule,
     MatRippleModule,
     NgWhiteboardModule,
+    MatDividerModule,
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatCardModule,
+    TextFieldModule,
+    MatInputModule,
   ],
   declarations : [
     MemorizerMainComponent,

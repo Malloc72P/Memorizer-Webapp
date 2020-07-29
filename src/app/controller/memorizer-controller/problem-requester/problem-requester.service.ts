@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {ApiRequesterService} from '../SocialLogin/api-requester/api-requester.service';
+import {ApiRequesterService} from '../../SocialLogin/api-requester/api-requester.service';
 import {Observable} from 'rxjs';
-import {HttpHelper} from '../../config/http-helper/http-helper';
-import {ProblemDto} from '../../model/dto/problem.dto';
+import {HttpHelper} from '../../../config/http-helper/http-helper';
+import {ProblemDto} from '../../../model/dto/problem.dto';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MainActionCtrlService} from './main-action-ctrl.service';
 
 
 
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   providers : [
-    MainActionCtrlModule
+    MainActionCtrlService
   ]
 })
 export class MainActionCtrlModule { }

@@ -10,6 +10,7 @@ import {MemorizerMainModule} from './view/memorizer-main/memorizer-main.module';
 import {MemorizerAccountMgrModule} from './view/memorizer-account-mgr/memorizer-account-mgr.module';
 import {ModelModule} from './model/model.module';
 import {RouterModule} from '@angular/router';
+import {MemorizerControllerModule} from './controller/memorizer-controller/memorizer-controller.module';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,10 @@ import {RouterModule} from '@angular/router';
     /* Memorizer Import START */
     /* *************************************************** */
     MemorizerMainModule,
-    DocumentModule,
     MemorizerAccountMgrModule,
+    DocumentModule,
     ModelModule,
+    MemorizerControllerModule
     /* **************************************************** */
     /* Memorizer Import END */
     /* **************************************************** */

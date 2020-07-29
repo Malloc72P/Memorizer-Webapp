@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {ApiRequesterService} from '../SocialLogin/api-requester/api-requester.service';
-import {RouteCtrlService} from '../../model/route-ctrl/route-ctrl.service';
-import {TempDataMgrService} from '../../document/temp-data-mgr/temp-data-mgr.service';
-import {UserDto} from '../../model/dto/user.dto';
+import {ApiRequesterService} from '../../SocialLogin/api-requester/api-requester.service';
+import {RouteCtrlService} from '../../../model/route-ctrl/route-ctrl.service';
+import {TempDataMgrService} from '../../../document/temp-data-mgr/temp-data-mgr.service';
+import {UserDto} from '../../../model/dto/user.dto';
 import {Observable} from 'rxjs';
-import {HttpHelper} from '../../config/http-helper/http-helper';
-import {SectionDto} from '../../model/dto/section.dto';
+import {HttpHelper} from '../../../config/http-helper/http-helper';
+import {SectionDto} from '../../../model/dto/section.dto';
 
 @Injectable({
   providedIn: 'root'
