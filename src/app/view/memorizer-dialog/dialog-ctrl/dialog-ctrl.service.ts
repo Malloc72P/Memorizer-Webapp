@@ -17,6 +17,7 @@ import {
   UpdateProblemDialogComponent,
   UpdateProblemDialogData
 } from '../main-dialog/update-problem-dialog/update-problem-dialog.component';
+import {DiscordLinkPwInputDialogComponent} from '../main-dialog/discord-link-pw-input-dialog/discord-link-pw-input-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,13 @@ export class DialogCtrlService {
     });
     return dialogRef.afterClosed();
   }
+  openDiscordLinkPwInputDialog(){
+    const dialogRef = this.dialog.open(DiscordLinkPwInputDialogComponent, {
+      width: '400px',
+      data: null
+    });
+    return dialogRef.afterClosed();
+  }
+
 
 }

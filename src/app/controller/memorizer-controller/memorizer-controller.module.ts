@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ControllerModule} from '../controller.module';
 import {ProblemRequesterService} from './problem-requester/problem-requester.service';
 import {SectionRequesterService} from './section-requester/section-requester.service';
+import {DiscordRequesterService} from './discord-requester/discord-requester.service';
 
 
 
@@ -14,7 +15,8 @@ import {SectionRequesterService} from './section-requester/section-requester.ser
   ],
   providers : [
     ProblemRequesterService,
-    SectionRequesterService
+    SectionRequesterService,
+    DiscordRequesterService
   ],
 })
 export class MemorizerControllerModule { }

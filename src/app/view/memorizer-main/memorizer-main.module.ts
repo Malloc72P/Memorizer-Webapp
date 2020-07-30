@@ -27,27 +27,32 @@ import {FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatInputModule} from '@angular/material/input';
+import {MemorizerControllerModule} from '../../controller/memorizer-controller/memorizer-controller.module';
 
 
 
 @NgModule({
   imports: [
+    //Memorizer****
     MemorizerDialogModule,
-    CommonModule,
     DocumentModule,
+    MemorizerControllerModule,
+    //External****
+    NgWhiteboardModule,
+    //Angular****
+    CommonModule,
+    FormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
     MatMenuModule,
     MatRippleModule,
-    NgWhiteboardModule,
     MatDividerModule,
     MatButtonToggleModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
-    FormsModule,
     MatCardModule,
     TextFieldModule,
     MatInputModule,

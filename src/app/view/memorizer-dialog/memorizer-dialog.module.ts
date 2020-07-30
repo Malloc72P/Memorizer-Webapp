@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
+import { DiscordLinkPwInputDialogComponent } from './main-dialog/discord-link-pw-input-dialog/discord-link-pw-input-dialog.component';
 
 
 
@@ -33,6 +34,7 @@ import {MatButtonModule} from '@angular/material/button';
     DebugDialogComponent,
     AreYouSureDialogComponent,
     UpdateProblemDialogComponent,
+    DiscordLinkPwInputDialogComponent,
   ],
   entryComponents : [
     CreateSectionDialogComponent,
@@ -40,7 +42,8 @@ import {MatButtonModule} from '@angular/material/button';
     CreateProblemDialogComponent,
     UpdateProblemDialogComponent,
     // DebugDialogComponent,
-    AreYouSureDialogComponent
+    AreYouSureDialogComponent,
+    DiscordLinkPwInputDialogComponent
   ],
   providers : [
     DialogCtrlService,

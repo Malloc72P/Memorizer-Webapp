@@ -1,14 +1,14 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 
 
-
 import {ApiRequesterService} from '../api-requester/api-requester.service';
 import {Observable} from 'rxjs';
-import {AuthEvent, AuthEventEnum} from './AuthEvent/AuthEvent';
 import {UserDto} from '../../../model/dto/user.dto';
 import {HttpHelper} from '../../../config/http-helper/http-helper';
 import {RouteCtrlService} from '../../../model/route-ctrl/route-ctrl.service';
 import {TempDataMgrService} from '../../../document/temp-data-mgr/temp-data-mgr.service';
+import {ControllerEvent, ControllerEventEnum, ControllerEventMgrService} from '../../controller-event-mgr/controller-event-mgr.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +21,17 @@ export class AuthRequestService {
     private routeCtrlService: RouteCtrlService,
     private tempDataMgrService: TempDataMgrService,
   ) {
-    //만약 토큰이 있다면 protectedApi를 시도하여 자동로그인함
-    if(this.checkLoggedInUser()){
-      this.protectedApi().subscribe((userDto:UserDto)=>{
-        this.routeCtrlService.goToMainPage();
-      });
-    }
+    console.log("AuthRequestService >> constructor >> 진입함");
+  }
+  //저장된 토큰을 이용해서 유저의 인증정보를 초기화함
+  initUserAuthData() :Promise<UserDto>{
+    return new Promise<UserDto>((resolve)=>{
+      if(this.checkLoggedInUser()){
+        this.protectedApi().subscribe((userDto:UserDto)=>{
+          resolve(userDto);
+        });
+      }
+    });
   }
 
   public checkLoggedInUser(){

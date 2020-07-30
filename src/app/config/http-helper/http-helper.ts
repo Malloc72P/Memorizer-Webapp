@@ -73,6 +73,9 @@ export class HttpHelper {
     deleteProblem: new ApiRequest(
       "/problem", ApiRequestTypeEnum.DELETE
     ),
+    linkDiscordAccount: new ApiRequest(
+      "/discord", ApiRequestTypeEnum.PATCH
+    ),
   };
 
   public static getContentType(){

@@ -4,11 +4,13 @@ export class AreYouSureDialogData {
   public mainMsg;
   public subMsg;
   public isAlertMode;
+  public additionalMsgList:Array<string>;
 
-  constructor(mainMsg, subMsg, isAlertMode) {
+  constructor(mainMsg, subMsg, isAlertMode, additionalMsgList?:Array<string>) {
     this.mainMsg = mainMsg;
     this.subMsg = subMsg;
     this.isAlertMode = isAlertMode;
+    this.additionalMsgList = additionalMsgList;
   }
 }
 @Component({
@@ -20,6 +22,7 @@ export class AreYouSureDialogComponent implements OnInit {
   public mainMsg;
   public subMsg;
   public isAlertMode;
+  public additionalMsgList:Array<string>;
 
   constructor(
     public dialogRef: MatDialogRef<any>,
@@ -27,6 +30,7 @@ export class AreYouSureDialogComponent implements OnInit {
     this.mainMsg = data.mainMsg;
     this.subMsg = data.subMsg;
     this.isAlertMode = data.isAlertMode;
+    this.additionalMsgList = (data.additionalMsgList) ? data.additionalMsgList : new Array<string>();
   }
 
   ngOnInit(): void {

@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>디스코드 연동하기</h1>
+<div mat-dialog-content>
+  <p>디스코드 연동요청하실 때 입력하신 암호를 입력해주세요</p>
+  <mat-form-field>
+    <mat-label>연동암호</mat-label>
+    <input matInput [(ngModel)]="discordActivationKey">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCreateBtnClick()">입력하기</button>
+</div>
