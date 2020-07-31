@@ -72,7 +72,16 @@ export class TempDataMgrService {
           break;
         case DocumentEventEnum.UPDATE:
           this.resetProblemListWithNoEvent();
-          this.getProblemList();
+          this.getProblemList().then((problemDtoList:Array<ProblemDto>)=>{
+            let lsProblemId = localStorage.getItem("problemId");
+            localStorage.removeItem("problemId");
+            if(lsProblemId){
+              let foundProblemDto:ProblemDto = this.problemList.get(lsProblemId);
+              if(foundProblemDto){
+                this.selectProblem(foundProblemDto);
+              }
+            }
+          });
           break;
         case DocumentEventEnum.DELETE:
           break;
@@ -182,13 +191,16 @@ export class TempDataMgrService {
     }
   }
   //문제 리스트를 불러오는 메서드.
-  getProblemList(){
-    if (this.currSection && this.currSection._id) {
-      this.problemRequesterService.requestGetProblemList(this.currSection._id)
-        .subscribe((problemDtoList:Array<ProblemDto>)=>{
-          this.addMultipleProblemDto(problemDtoList);
-        });
-    }
+  getProblemList() :Promise<Array<ProblemDto>>{
+    return new Promise<Array<ProblemDto>>((resolve, reject)=>{
+      if (this.currSection && this.currSection._id) {
+        this.problemRequesterService.requestGetProblemList(this.currSection._id)
+          .subscribe((problemDtoList:Array<ProblemDto>)=>{
+            this.addMultipleProblemDto(problemDtoList);
+            resolve(problemDtoList);
+          });
+      }
+    });
   }
   addMultipleProblemDto(problemDtoList:Array<ProblemDto>){
     for(let problemDto of problemDtoList){
@@ -273,12 +285,16 @@ export class TempDataMgrService {
 
 
   public selectSection(sectionDto:SectionDto){
-    this._currSection = sectionDto;
-    this.currSectionEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._currSection ));
+    if (sectionDto) {
+      this._currSection = sectionDto;
+      this.currSectionEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._currSection));
+    }
   }
   public selectProblem(problemDto:ProblemDto){
-    this._currProblem = problemDto;
-    this.currProblemEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._currProblem ));
+    if (problemDto) {
+      this._currProblem = problemDto;
+      this.currProblemEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._currProblem));
+    }
   }
 
 

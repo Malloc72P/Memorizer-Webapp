@@ -52,6 +52,11 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
   initSectionData(){//섹션데이터를 요청하는 메서드
     this.sectionApiRequester.requestGetSectionList().subscribe((sectionList:Array<SectionDto>)=>{
       this.tempDataMgrService.createSectionsBySectionList(sectionList);
+      let localStorageSectionId = localStorage.getItem("sectionId");
+      localStorage.removeItem("sectionId");
+      if(localStorageSectionId){
+        this.tempDataMgrService.selectSection(this.tempDataMgrService.sectionList.get(localStorageSectionId));
+      }
     })
   }
   toggleNav(){

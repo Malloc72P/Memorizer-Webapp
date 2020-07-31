@@ -6,6 +6,7 @@ import {AuthProcessComponent} from './auth-process/auth-process.component';
 import { DiscordLinkProcessComponent } from './discord-link-process/discord-link-process.component';
 import {MemorizerControllerModule} from '../../controller/memorizer-controller/memorizer-controller.module';
 import {DocumentModule} from '../../document/document.module';
+import { ProblemProcessComponent } from './problem-process/problem-process.component';
 
 
 
@@ -20,6 +21,7 @@ import {DocumentModule} from '../../document/document.module';
     LogoutPageComponent,
     AuthProcessComponent,
     DiscordLinkProcessComponent,
+    ProblemProcessComponent,
   ],
 })
 export class MemorizerAccountMgrModule { }

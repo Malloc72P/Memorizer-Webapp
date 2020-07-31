@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthRequestService} from '../../controller/SocialLogin/auth-request/auth-request.service';
 import {RouteCtrlService} from '../../model/route-ctrl/route-ctrl.service';
 import {DiscordRequesterService} from '../../controller/memorizer-controller/discord-requester/discord-requester.service';
 import {DiscordUsersDto} from '../../model/dto/discord-users.dto';
 import {DialogCtrlService} from '../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
 import {AreYouSureDialogData} from '../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
+import {DocumentEvent, DocumentEventEnum, TempDataMgrService} from '../../document/temp-data-mgr/temp-data-mgr.service';
+import {SectionDto} from '../../model/dto/section.dto';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-memorizer-main',
@@ -19,40 +22,44 @@ export class MemorizerMainComponent implements OnInit {
     private discordRequester: DiscordRequesterService,
     private routeCtrlService: RouteCtrlService,
     private dialogCtrlService: DialogCtrlService,
+    private tempDataMgrService: TempDataMgrService,
   ) {
   }
-
+  private subscriptionList:Array<Subscription> = new Array<Subscription>();
   ngOnInit(): void {
     this.authRequester.initUserAuthData().then(()=>{
-      let isLinkingDiscordSequence = localStorage.getItem("isLinkingDiscordSequence");
-      if(isLinkingDiscordSequence && isLinkingDiscordSequence === "y"){
-        //디코 연동요청
-        //사용자로부터 연동암호를 입력받아야 하므로, 연동암호 입력 패널을 띄우자
-        this.dialogCtrlService.openDiscordLinkPwInputDialog().subscribe((activatiionKey)=>{
-          if(activatiionKey){
-            //연동요청 실시
-            let tempDiscordUserDto:DiscordUsersDto = new DiscordUsersDto();
-            tempDiscordUserDto._id = localStorage.getItem("discordDataOID");
-            tempDiscordUserDto.activationKey = activatiionKey;
-            this.discordRequester.requestLinkDiscordAccount(tempDiscordUserDto)
-              .subscribe((res)=>{
-                console.log("MemorizerMainComponent >> requestLinkDiscordAccount >> res : ",res);
-                //그러면 그 결과를 사용자에게 보여준다
-                this.dialogCtrlService.openAreYouSureDialog(new AreYouSureDialogData(
-                  "디스코드 연동에 성공했어요!","이제 메모라이저가 디코로 문제를 내줄께요!", false
-                ));
-            },(e)=>{
-                console.error("MemorizerMainComponent >> requestLinkDiscordAccount >> e : ",e);
-                this.dialogCtrlService.openAreYouSureDialog(new AreYouSureDialogData(
-                  "디스코드 연동에 실패했어요......","연동암호가 틀렸을 수 도 있어요!", false
-                  ,["암호가 맞는데도 안되는 경우, 개발자에게 문의해주세요!", "연동을 다시 시도하시려면, 디스코드에 전송된 링크로 재시도해주세요"]
-                ));
-              });
-          }//if(activatiionKey)
-        });
-      } else
-        this.routeCtrlService.goToMainPage();
+      this.processLinkingDiscordAccount();
     });
+  }
+  processLinkingDiscordAccount(){
+    let isLinkingDiscordSequence = localStorage.getItem("isLinkingDiscordSequence");
+    if(isLinkingDiscordSequence && isLinkingDiscordSequence === "y"){
+      //디코 연동요청
+      //사용자로부터 연동암호를 입력받아야 하므로, 연동암호 입력 패널을 띄우자
+      this.dialogCtrlService.openDiscordLinkPwInputDialog().subscribe((activatiionKey)=>{
+        if(activatiionKey){
+          //연동요청 실시
+          let tempDiscordUserDto:DiscordUsersDto = new DiscordUsersDto();
+          tempDiscordUserDto._id = localStorage.getItem("discordDataOID");
+          tempDiscordUserDto.activationKey = activatiionKey;
+          this.discordRequester.requestLinkDiscordAccount(tempDiscordUserDto)
+            .subscribe((res)=>{
+              console.log("MemorizerMainComponent >> requestLinkDiscordAccount >> res : ",res);
+              //그러면 그 결과를 사용자에게 보여준다
+              this.dialogCtrlService.openAreYouSureDialog(new AreYouSureDialogData(
+                "디스코드 연동에 성공했어요!","이제 메모라이저가 디코로 문제를 내줄께요!", false
+              ));
+            },(e)=>{
+              console.error("MemorizerMainComponent >> requestLinkDiscordAccount >> e : ",e);
+              this.dialogCtrlService.openAreYouSureDialog(new AreYouSureDialogData(
+                "디스코드 연동에 실패했어요......","연동암호가 틀렸을 수 도 있어요!", false
+                ,["암호가 맞는데도 안되는 경우, 개발자에게 문의해주세요!", "연동을 다시 시도하시려면, 디스코드에 전송된 링크로 재시도해주세요"]
+              ));
+            });
+        }//if(activatiionKey)
+      });
+    } else
+      this.routeCtrlService.goToMainPage();
 
   }
 
