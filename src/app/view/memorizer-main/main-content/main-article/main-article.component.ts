@@ -1,23 +1,49 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgWhiteboardService} from 'ng-whiteboard';
-import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
+import {DocumentEventEnum, TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
+import {DocumentEvent} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-main-article',
   templateUrl: './main-article.component.html',
   styleUrls: ['./main-article.component.css', '../../../dase-style/color-style.scss', '../../../dase-style/toolbar-style.css']
 })
-export class MainArticleComponent implements OnInit {
+export class MainArticleComponent implements OnInit, OnDestroy {
   public currInputerMode = "whiteboard";
   public brushSize = 0.3;
   public isAnswerViewingMode = false;
+  private subscriptionList:Array<Subscription> = new Array<Subscription>();
   constructor(
     private whiteboardService: NgWhiteboardService,
     public tempDataMgrService: TempDataMgrService,
   ) { }
 
   ngOnInit(): void {
+    this.onTdmsEvent();
+  }
+  ngOnDestroy() {
+    if(this.subscriptionList){
+      for(let subscription of this.subscriptionList){
+        subscription.unsubscribe();
+      }
+    }
+  }
 
+  //TDMS관련 이벤트 처리
+  onTdmsEvent(){
+    let subscription = this.tempDataMgrService.currProblemEventEmitter
+      .subscribe((event:DocumentEvent)=>{
+        switch (event.action) {
+          case DocumentEventEnum.UPDATE:
+            this.isAnswerViewingMode = false;
+            break;
+          case DocumentEventEnum.DELETE:
+            this.isAnswerViewingMode = false;
+            break;
+        }
+    });
+    this.subscriptionList.push(subscription);
   }
 
   //문제풀이관련 메서드

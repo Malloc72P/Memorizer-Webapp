@@ -72,6 +72,7 @@ export class TempDataMgrService {
           break;
         case DocumentEventEnum.UPDATE:
           this.resetProblemListWithNoEvent();
+
           this.getProblemList().then((problemDtoList:Array<ProblemDto>)=>{
             let lsProblemId = localStorage.getItem("problemId");
             localStorage.removeItem("problemId");
@@ -208,9 +209,18 @@ export class TempDataMgrService {
     }
   }
   //문제리스트 초기화
+  //초기화는 시키지만, problemListEventEmitter를 이용한 이벤트는 발생시키지 않는다.
+  //problemList의 값을 수정하는 마지막 지점이기 때문임.
+  //이 작업으로 인해 다른 옵저버가 처리를 수행해서는 안될 때, withNoEvent시리즈 메서드를 쓴다.
   resetProblemListWithNoEvent(){
     if (this.problemList) {
       this.problemList.clear();
+    }
+    this.resetCurrProblemWithNoEvent();
+  }
+  resetCurrProblemWithNoEvent(){
+    if(this.currProblem){
+      this._currProblem = null;
     }
   }
   resetProblemList(){
