@@ -11,7 +11,13 @@
 .sub-nav-width-adjuster{
   cursor: col-resize;
 }
-
+.sub-nav-header{
+  display: flex;
+}
+.sub-nav-header button{
+  padding: 0;
+  min-width: 36px;
+}
 .sub-nav-empty-notifier{
   width: 100%;
   padding-top: 50%;

@@ -4,6 +4,7 @@ import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-m
 import {Subscription} from 'rxjs';
 import {SectionRequesterService} from '../../../../controller/memorizer-controller/section-requester/section-requester.service';
 import {SectionDto} from '../../../../model/dto/section.dto';
+import {ProblemDto} from '../../../../model/dto/problem.dto';
 
 @Component({
   selector: 'app-main-navigator',
@@ -81,7 +82,9 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
   //현재 네비메뉴가 출력되고 있는지 여부를 나타냄.
   //사이드바의 토글 버튼이 눌려서 숨김모드로 진입하면 false가 됨
   private isDisplayed = true;
-
+  public searchSectionTitle = "";
+  public searchProblemTitle = "";
+  public searchProblemQues = "";
 
   onPointerDown(event){
     this.isDragging = true;
@@ -107,5 +110,13 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
     if (this.isDragging) {
       this.isDragging = false;
     }
+  }
+  onSearchDataChange(){
+    console.log(
+      `onSearechDataChange`
+    +`[ searchSectionTitle : ${this.searchSectionTitle} ]`
+    +`[ searchProblemTitle : ${this.searchProblemTitle} ]`
+    +`[ searchProblemQues : ${this.searchProblemQues} ]`
+    );
   }
 }

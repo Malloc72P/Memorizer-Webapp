@@ -28,6 +28,8 @@ export class MemorizerMainComponent implements OnInit {
   private subscriptionList:Array<Subscription> = new Array<Subscription>();
   ngOnInit(): void {
     this.authRequester.initUserAuthData().then(()=>{
+      //만약 디코 계정연동 시퀀스라면, 아래의 메서드의 로직부분이 실행될 것임
+      //아니라면, 아래 메서드로 진입은 하지만 검사부분에서 막혀서 바로 리턴된다
       this.processLinkingDiscordAccount();
     });
   }

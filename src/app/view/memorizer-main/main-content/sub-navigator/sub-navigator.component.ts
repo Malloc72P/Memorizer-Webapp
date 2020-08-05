@@ -1,19 +1,36 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
+import {MatMenu} from '@angular/material/menu';
+
+export enum SortBaseEnum {
+  CORRECT_CNT,
+  INCORRECT_CNT,
+}
+export enum SortDirectionEnum {
+  ASC,
+  DESC,
+}
 
 @Component({
   selector: 'app-sub-navigator',
   templateUrl: './sub-navigator.component.html',
   styleUrls: [
     './sub-navigator.component.css',
+    '../../../dase-style/toolbar-style.css',
     '../../../dase-style/color-style.scss',
     '../../../dase-style/font-style.scss',
   ]
 })
 export class SubNavigatorComponent implements OnInit {
 
+  SortBaseEnum = SortBaseEnum;
+  SortDirectionEnum = SortDirectionEnum;
+
   @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
+
+  // @ViewChild('sorterPrimaryMenu') sorterPrimaryMenu: MatMenu;
+  // @ViewChild('sorterSecondaryMenu') sorterSecondaryMenu: MatMenu;
 
   constructor(
     public mainViewCtrlService:MainActionCtrlService,
@@ -78,6 +95,9 @@ export class SubNavigatorComponent implements OnInit {
     if (this.isDragging) {
       this.isDragging = false;
     }
+  }
+  sortBy(sortBase:SortBaseEnum, sortDirection:SortDirectionEnum){
+    console.log(`sortBase : ${SortBaseEnum[sortBase]} \n sortDirection : ${SortDirectionEnum[sortDirection]}`);
   }
 
 }

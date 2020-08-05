@@ -16,7 +16,9 @@
   width: 100%;
   padding: 32px 18px;
 }
-
+.navigator-wrapper{
+  display: flex;
+}
   /*사이드바, 네비게이터, 아티클 래퍼스타일*/
   app-main-sidebar{
   }

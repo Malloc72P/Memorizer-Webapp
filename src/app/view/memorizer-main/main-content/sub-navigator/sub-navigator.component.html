@@ -3,7 +3,8 @@
   <!--토글버튼 있는 사이드바 바로 오른쪽에 있는 네비게이터. 여기에 카테고리가 표시됨-->
 
   <div class="sub-nav-empty-notifier disable-text-select grey-background-4"
-       *ngIf="tempDataMgrService.problemList.size === 0">
+       *ngIf="tempDataMgrService.problemList.size === 0
+              && mainViewCtrlService.isSearchMode === false">
     <mat-icon class="sub-nav-empty-notifier-icon">cloud_off</mat-icon>
     <h3>문제 목록이</h3>
     <h3>텅 비었어요.</h3>
@@ -14,8 +15,31 @@
 
   <!--아이템 리스트-->
   <div [ngStyle]="{'width' : (navWidth - adjusterSize) + 'px'}"
-       *ngIf="tempDataMgrService.problemList.size !== 0"
+       *ngIf="tempDataMgrService.problemList.size !== 0
+       || mainViewCtrlService.isSearchMode === true"
        class="sub-nav-list light-box-shadow grey-background-4">
+
+      <!--서브 네비바 헤더 { 정렬버튼이 여기 있음 }-->
+      <div class="sub-nav-header" >
+        <span class="toolbar-spacer"></span>
+        <button mat-button [matMenuTriggerFor]="sortByMenu"><mat-icon>sort</mat-icon></button>
+        <mat-menu #sortByMenu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="sortByCorrectCntMenu">많이 맞춘 순서대로</button>
+          <button mat-menu-item [matMenuTriggerFor]="sortByIncorrectCntMenu">많이 틀린 순서대로</button>
+          <mat-menu #sortByCorrectCntMenu="matMenu">
+            <button mat-menu-item (click)="sortBy(SortBaseEnum.CORRECT_CNT, SortDirectionEnum.ASC)">오름차순</button>
+            <button mat-menu-item (click)="sortBy(SortBaseEnum.CORRECT_CNT, SortDirectionEnum.DESC)">내림차순</button>
+          </mat-menu>
+          <mat-menu #sortByIncorrectCntMenu="matMenu">
+            <button mat-menu-item (click)="sortBy(SortBaseEnum.INCORRECT_CNT, SortDirectionEnum.ASC)">오름차순</button>
+            <button mat-menu-item (click)="sortBy(SortBaseEnum.INCORRECT_CNT, SortDirectionEnum.DESC)">내림차순</button>
+          </mat-menu>
+        </mat-menu>
+
+      </div>
+      <mat-divider></mat-divider>
+
+      <!--문제 카드들은 여기에 배치됨-->
       <app-problem-card *ngFor="let problemDto of tempDataMgrService.problemList | keyvalue"
                         [problemDto]="problemDto.value">
       </app-problem-card>

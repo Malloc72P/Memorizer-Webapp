@@ -62,5 +62,7 @@ export class MainSidebarComponent implements OnInit {
     //     this.tempDataMgrService.createSection(result)
     //   });
   }
-
+  onSearchBtnClicked(){
+    this.mainViewCtrlService.toggleSearchMode();
+  }
 }
