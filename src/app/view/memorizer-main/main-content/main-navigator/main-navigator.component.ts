@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {SectionRequesterService} from '../../../../controller/memorizer-controller/section-requester/section-requester.service';
 import {SectionDto} from '../../../../model/dto/section.dto';
 import {ProblemDto} from '../../../../model/dto/problem.dto';
+import {ProblemRequesterService} from '../../../../controller/memorizer-controller/problem-requester/problem-requester.service';
 
 @Component({
   selector: 'app-main-navigator',
@@ -23,12 +24,32 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
   constructor(
     public mainViewCtrlService:MainActionCtrlService,
     public tempDataMgrService:TempDataMgrService,
-    public sectionApiRequester:SectionRequesterService
+    public sectionApiRequester:SectionRequesterService,
   ) {
     this.initEventHandler();
     this.initSectionData();
   }
   ngOnInit(): void {
+    let temp1 = 10 * 60 * 1000;
+    let temp2 = 20 * 60 * 1000;
+    let temp3 = 30 * 60 * 1000;
+    let temp4 = 60 * 60 * 1000;
+    let temp5 = 2 * 60 * 60 * 1000;
+    let temp6 = 4 * 60 * 60 * 1000;
+    let temp7 = 8 * 60 * 60 * 1000;
+    let temp8 = 12 * 60 * 60 * 1000;
+    let temp9 = 24 * 60 * 60 * 1000;
+    let temp10 = 2 * 24 * 60 * 60 * 1000;
+    console.log(`temp1 : ${temp1}`);
+    console.log(`temp2 : ${temp2}`);
+    console.log(`temp3 : ${temp3}`);
+    console.log(`temp4 : ${temp4}`);
+    console.log(`temp5 : ${temp5}`);
+    console.log(`temp6 : ${temp6}`);
+    console.log(`temp7 : ${temp7}`);
+    console.log(`temp8 : ${temp8}`);
+    console.log(`temp9 : ${temp9}`);
+    console.log(`temp10 : ${temp10}`);
   }
 
   ngOnDestroy(): void {
@@ -45,10 +66,21 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
           case MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED:
             this.toggleNav();
             break;
+          case MainViewActionEventEnum.ACTIVATE_SEARCH_MODE:
+            this.resetSearchParams();
+            this.onSearchDataChange();
+            break;
+          case MainViewActionEventEnum.DEACTIVATE_SEARCH_MODE:
+            this.resetSearchParams();
+            break;
         }
       });
 
     this.subscriptionList.push(subsc);
+  }
+  resetSearchParams(){
+    this.searchProblemQues = "";
+    this.searchProblemTitle = "";
   }
   initSectionData(){//섹션데이터를 요청하는 메서드
     this.sectionApiRequester.requestGetSectionList().subscribe((sectionList:Array<SectionDto>)=>{
@@ -82,7 +114,9 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
   //현재 네비메뉴가 출력되고 있는지 여부를 나타냄.
   //사이드바의 토글 버튼이 눌려서 숨김모드로 진입하면 false가 됨
   private isDisplayed = true;
-  public searchSectionTitle = "";
+
+  // 검색관련 변수
+  // public searchSectionTitle = "";
   public searchProblemTitle = "";
   public searchProblemQues = "";
 
@@ -114,9 +148,11 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
   onSearchDataChange(){
     console.log(
       `onSearechDataChange`
-    +`[ searchSectionTitle : ${this.searchSectionTitle} ]`
     +`[ searchProblemTitle : ${this.searchProblemTitle} ]`
     +`[ searchProblemQues : ${this.searchProblemQues} ]`
     );
+    this.tempDataMgrService.searchProblems(
+      this.searchProblemTitle, this.searchProblemQues);
+
   }
 }

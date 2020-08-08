@@ -6,6 +6,7 @@ import {SectionRequesterService} from '../../controller/memorizer-controller/sec
 import {DialogCtrlService} from '../../view/memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
 import {AreYouSureDialogData} from '../../view/memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 import {ProblemRequesterService} from '../../controller/memorizer-controller/problem-requester/problem-requester.service';
+
 export class DocumentEvent {
   action:DocumentEventEnum;
   data;
@@ -60,6 +61,7 @@ export class TempDataMgrService {
     this.currProblemEventEmitter = new EventEmitter<any>();
 
     this.initSectionEventHandler();
+    this.initProblemEventHandler();
   }
 
   //초기화 관련 메서드
@@ -89,7 +91,16 @@ export class TempDataMgrService {
       }
     });
   }
-
+  initProblemEventHandler(){
+    this.problemListEventEmitter.subscribe((event:DocumentEvent)=>{
+      switch (event.action) {
+        case DocumentEventEnum.CREATE:
+        case DocumentEventEnum.UPDATE:
+        case DocumentEventEnum.DELETE:
+          this.refreshProblemList();
+      }
+    })
+  }
 
   //유저데이터 처리 메서드
   public setUserDto(userDto:UserDto){
@@ -191,12 +202,22 @@ export class TempDataMgrService {
       this.problemListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, newProblem));
     }
   }
+  public addProblemWithNoEvent(newProblem:ProblemDto){
+    if (!this.problemList.has(newProblem._id)) {
+      this._problemList.set(newProblem._id, newProblem);
+    }
+    else if(this.problemList.get(newProblem._id).title !== newProblem.title){
+      this._problemList.set(newProblem._id, newProblem);
+    }
+  }
+
   //문제 리스트를 불러오는 메서드.
   getProblemList() :Promise<Array<ProblemDto>>{
     return new Promise<Array<ProblemDto>>((resolve, reject)=>{
       if (this.currSection && this.currSection._id) {
         this.problemRequesterService.requestGetProblemList(this.currSection._id)
           .subscribe((problemDtoList:Array<ProblemDto>)=>{
+            this.resetProblemListWithNoEvent();
             this.addMultipleProblemDto(problemDtoList);
             resolve(problemDtoList);
           });
@@ -207,6 +228,7 @@ export class TempDataMgrService {
     for(let problemDto of problemDtoList){
       this.addProblem(problemDto);
     }
+    this.problemListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.CREATE, null));
   }
   //문제리스트 초기화
   //초기화는 시키지만, problemListEventEmitter를 이용한 이벤트는 발생시키지 않는다.
@@ -306,9 +328,17 @@ export class TempDataMgrService {
       this.currProblemEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, this._currProblem));
     }
   }
-
-
-
+  public searchProblems(problemTitle, problemQuestion){
+    this.problemRequesterService.requestSearchProblemList(problemTitle, problemQuestion)
+      .subscribe((searchResult:Array<ProblemDto>)=>{
+        this.resetProblemListWithNoEvent();
+        this.addMultipleProblemDto(searchResult);
+      });
+  }
+  public refreshProblemList(){
+    this._problemList.set("temp", new ProblemDto("","","","","","","","","","","",""));
+    // this._problemList.delete("temp");
+  }
 
   get userDto() {
     return this._userDto;

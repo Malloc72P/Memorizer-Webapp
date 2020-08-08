@@ -20,7 +20,7 @@ export enum MainViewActionEventEnum {
 })
 export class MainActionCtrlService {
   public mainViewActionEventEmitter:EventEmitter<any>;
-  public isSearchMode = true;
+  public isSearchMode = false;
   constructor() {
     this.mainViewActionEventEmitter = new EventEmitter<any>();
   }

@@ -1,7 +1,8 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
-import {MatMenu} from '@angular/material/menu';
+import {KeyValue} from '@angular/common';
+import {ProblemDto} from '../../../../model/dto/problem.dto';
 
 export enum SortBaseEnum {
   CORRECT_CNT,
@@ -27,15 +28,15 @@ export class SubNavigatorComponent implements OnInit {
   SortBaseEnum = SortBaseEnum;
   SortDirectionEnum = SortDirectionEnum;
 
-  @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
+  public problemSortFunc:Function;
 
-  // @ViewChild('sorterPrimaryMenu') sorterPrimaryMenu: MatMenu;
-  // @ViewChild('sorterSecondaryMenu') sorterSecondaryMenu: MatMenu;
+  @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
 
   constructor(
     public mainViewCtrlService:MainActionCtrlService,
     public tempDataMgrService:TempDataMgrService
   ) {
+    this.problemSortFunc = SubNavigatorComponent.sortByCorrectCntDesc;
     this.mainViewCtrlService.mainViewActionEventEmitter
       .subscribe((event:MainViewActionEvent)=>{
         switch (event.action) {
@@ -43,7 +44,7 @@ export class SubNavigatorComponent implements OnInit {
             this.toggleNav();
             break;
         }
-      })
+      });
   }
   toggleNav(){
     if(this.isDisplayed){
@@ -96,8 +97,56 @@ export class SubNavigatorComponent implements OnInit {
       this.isDragging = false;
     }
   }
-  sortBy(sortBase:SortBaseEnum, sortDirection:SortDirectionEnum){
+  public sortRefresher = 0;
+  onSortBtnClicked(sortBase:SortBaseEnum, sortDirection:SortDirectionEnum){
     console.log(`sortBase : ${SortBaseEnum[sortBase]} \n sortDirection : ${SortDirectionEnum[sortDirection]}`);
+    // this.tempDataMgrService.sortProblemListBy(sortBase, sortDirection);
+    switch (sortBase) {
+      case SortBaseEnum.CORRECT_CNT:
+        if(sortDirection === SortDirectionEnum.ASC){
+          this.problemSortFunc = SubNavigatorComponent.sortByCorrectCntAsc;
+        }else{
+          this.problemSortFunc = SubNavigatorComponent.sortByCorrectCntDesc;
+        }
+        break;
+      case SortBaseEnum.INCORRECT_CNT:
+        if(sortDirection === SortDirectionEnum.ASC){
+          this.problemSortFunc = SubNavigatorComponent.sortByIncorrectCntAsc;
+        }else{
+          this.problemSortFunc = SubNavigatorComponent.sortByIncorrectCntDesc;
+        }
+        break;
+    }
+    this.tempDataMgrService.refreshProblemList();
+  }
+  public static sortByCorrectCntAsc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
+    if(a.value.correctCount > b.value.correctCount){
+      return 1;
+    }else if(a.value.correctCount < b.value.correctCount){
+      return -1;
+    }else return 0;
+  }
+  public static sortByCorrectCntDesc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
+    if(a.value.correctCount < b.value.correctCount){
+      return 1;
+    }else if(a.value.correctCount > b.value.correctCount){
+      return -1;
+    }else return 0;
   }
 
+  public static sortByIncorrectCntAsc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
+    if(a.value.incorrectCount > b.value.incorrectCount){
+      return 1;
+    }else if(a.value.incorrectCount < b.value.incorrectCount){
+      return -1;
+    }else return 0;
+  }
+
+  public static sortByIncorrectCntDesc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
+    if(a.value.incorrectCount < b.value.incorrectCount){
+      return 1;
+    }else if(a.value.incorrectCount > b.value.incorrectCount){
+      return -1;
+    }else return 0;
+  }
 }

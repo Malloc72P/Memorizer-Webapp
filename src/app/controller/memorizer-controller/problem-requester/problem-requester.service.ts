@@ -69,14 +69,26 @@ export class ProblemRequesterService {
         });
     });
   }
-  // 문제 생성 요청
+  // 문제 가져오기 요청
   public requestGetProblemList(sectionId) :Observable<Array<ProblemDto>>{
     return new Observable<Array<ProblemDto>>((observer)=>{
       this.apiRequester.processRequest(HttpHelper.api.getProblemList, {'sectionId' : sectionId})
         .subscribe((problemDtoList:Array<ProblemDto>)=>{
           observer.next(problemDtoList);
         },(e)=>{
-          console.log("ProblemRequesterService >> requestCreateProblem >> e : ",e);
+          console.log("ProblemRequesterService >> requestGetProblemList >> e : ",e);
+        });
+    });
+  }
+  // 문제 검색 요청
+  public requestSearchProblemList(problemTitle, problemQuestion) :Observable<Array<ProblemDto>>{
+    return new Observable<Array<ProblemDto>>((observer)=>{
+      this.apiRequester.processRequest(HttpHelper.api.getProblemList,
+        {'problemTitle' : problemTitle, 'problemQuestion' : problemQuestion})
+        .subscribe((problemDtoList:Array<ProblemDto>)=>{
+          observer.next(problemDtoList);
+        },(e)=>{
+          console.log("ProblemRequesterService >> requestSearchProblemList >> e : ",e);
         });
     });
   }
