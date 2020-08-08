@@ -30,26 +30,6 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
     this.initSectionData();
   }
   ngOnInit(): void {
-    let temp1 = 10 * 60 * 1000;
-    let temp2 = 20 * 60 * 1000;
-    let temp3 = 30 * 60 * 1000;
-    let temp4 = 60 * 60 * 1000;
-    let temp5 = 2 * 60 * 60 * 1000;
-    let temp6 = 4 * 60 * 60 * 1000;
-    let temp7 = 8 * 60 * 60 * 1000;
-    let temp8 = 12 * 60 * 60 * 1000;
-    let temp9 = 24 * 60 * 60 * 1000;
-    let temp10 = 2 * 24 * 60 * 60 * 1000;
-    console.log(`temp1 : ${temp1}`);
-    console.log(`temp2 : ${temp2}`);
-    console.log(`temp3 : ${temp3}`);
-    console.log(`temp4 : ${temp4}`);
-    console.log(`temp5 : ${temp5}`);
-    console.log(`temp6 : ${temp6}`);
-    console.log(`temp7 : ${temp7}`);
-    console.log(`temp8 : ${temp8}`);
-    console.log(`temp9 : ${temp9}`);
-    console.log(`temp10 : ${temp10}`);
   }
 
   ngOnDestroy(): void {
