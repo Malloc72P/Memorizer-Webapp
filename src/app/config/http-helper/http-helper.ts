@@ -18,10 +18,10 @@ export enum ApiRequestTypeEnum {
 
 
 export class HttpHelper {
-  private static readonly ngDomainName        =   ServerSetting.ngDomain;
-  private static readonly ngPort              =   ServerSetting.ngPort;
-  private static readonly apiServerDomainName =   ServerSetting.apiDomain;
-  private static readonly apiServerPort       =   ServerSetting.apiPort;
+  private static readonly ngDomainName        =   ServerSetting.deploy_ngDomain;
+  private static readonly ngPort              =   ServerSetting.deploy_ngPort;
+  private static readonly apiServerDomainName =   ServerSetting.deploy_apiDomain;
+  private static readonly apiServerPort       =   ServerSetting.deploy_apiPort;
   // private static readonly apiServerPort       =   ":5858";
   private static readonly contentType         =   ServerSetting.contentType;
   private static readonly tokenType           =   ServerSetting.tokenType;
