@@ -73,6 +73,9 @@ export class HttpHelper {
     deleteProblem: new ApiRequest(
       "/problem", ApiRequestTypeEnum.DELETE
     ),
+    timerStepListProblem: new ApiRequest(
+      "/problem/waitTimeList", ApiRequestTypeEnum.GET
+    ),
     linkDiscordAccount: new ApiRequest(
       "/discord", ApiRequestTypeEnum.PATCH
     ),

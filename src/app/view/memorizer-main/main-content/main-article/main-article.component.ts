@@ -2,7 +2,8 @@ import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from 
 import {NgWhiteboardService} from 'ng-whiteboard';
 import {DocumentEventEnum, TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {DocumentEvent} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
-import {Subscription} from 'rxjs';
+import {Subscription, timer} from 'rxjs';
+import {ProblemDto} from '../../../../model/dto/problem.dto';
 
 @Component({
   selector: 'app-main-article',
@@ -14,10 +15,14 @@ export class MainArticleComponent implements OnInit, OnDestroy {
   public brushSize = 0.3;
   public isAnswerViewingMode = false;
   private subscriptionList:Array<Subscription> = new Array<Subscription>();
+  public waitTimerList:Array<number> = [0,0,0,0,0,0,0,0,0,0];
+  public isTimerTerminated = true;
+  public countdownTimer = "??시 ??분 ??초 남음";
   constructor(
     private whiteboardService: NgWhiteboardService,
     public tempDataMgrService: TempDataMgrService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.onTdmsEvent();
@@ -37,6 +42,7 @@ export class MainArticleComponent implements OnInit, OnDestroy {
         switch (event.action) {
           case DocumentEventEnum.UPDATE:
             this.isAnswerViewingMode = false;
+            this.onCurrProblemChanged();
             break;
           case DocumentEventEnum.DELETE:
             this.isAnswerViewingMode = false;
@@ -44,6 +50,71 @@ export class MainArticleComponent implements OnInit, OnDestroy {
         }
     });
     this.subscriptionList.push(subscription);
+    subscription = this.tempDataMgrService.problemListEventEmitter
+      .subscribe((event:DocumentEvent)=>{
+        switch (event.action) {
+          case DocumentEventEnum.CREATE:
+            break;
+          case DocumentEventEnum.UPDATE:
+            let updatedProblemDto:ProblemDto = event.data;
+            if(updatedProblemDto._id === this.tempDataMgrService.currProblem){
+
+            }
+            break;
+          case DocumentEventEnum.DELETE:
+            break;
+        }
+      });
+  }
+  onCurrProblemChanged(){
+    this.tempDataMgrService.getTimerStepList()
+      .then((waitTimerList)=>{
+        this.waitTimerList = waitTimerList;
+
+        console.log("waitTimerList : ",this.waitTimerList);
+
+        this.getCountdownTimer();
+
+        let tempInterval = setInterval(()=>{
+            let remainTime = this.getCountdownTimer();
+            if(remainTime < 0){
+              this.isTimerTerminated = true;
+            }
+          },900);
+      });
+  }
+  getCountdownTimer(){
+    let remainTime = this.tempDataMgrService.getQuestionWaitTime(this.tempDataMgrService.currProblem);
+    console.log("remainTime : ", remainTime);
+
+    if(remainTime > 0){
+      this.isTimerTerminated = false;
+    }
+    this.countdownTimer = this.getRemainTime(remainTime);
+    return remainTime;
+  }
+  getRemainTime(milliseconds:number){
+    /*
+    1s = 1000ms
+    1m = 60s
+    1h = 60m
+    */
+    console.log(`wait`)
+    let currStep:number;
+    let hours, minute, seconds;
+
+    //시간 계산
+    hours = Math.floor(milliseconds / ( 60 * 60 * 1000 ));
+    milliseconds -= hours * ( 60 * 60 * 1000 );
+    //분 계산
+    minute = Math.floor(milliseconds / ( 60 * 1000 ));
+    milliseconds -= minute * ( 60 * 1000 );
+    //초 계산
+    seconds = Math.floor(milliseconds / ( 1000 ));
+
+    let result = `${hours.toFixed(0)}시간 ${minute.toFixed(0)}분 ${seconds.toFixed(0)}초`;
+    console.log(`result : ${result}`)
+    return result;
   }
 
   //문제풀이관련 메서드

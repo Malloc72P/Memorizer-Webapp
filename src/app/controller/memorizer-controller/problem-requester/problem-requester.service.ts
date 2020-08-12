@@ -92,5 +92,16 @@ export class ProblemRequesterService {
         });
     });
   }
+  // 문제 검색 요청
+  public getTimerStepList() :Observable<Array<number>>{
+    return new Observable<Array<number>>((observer)=>{
+      this.apiRequester.processRequest(HttpHelper.api.timerStepListProblem)
+        .subscribe((timerStepList:Array<number>)=>{
+          observer.next(timerStepList);
+        },(e)=>{
+          console.log("ProblemRequesterService >> getTimerStepList >> e : ",e);
+        });
+    });
+  }
 
 }
