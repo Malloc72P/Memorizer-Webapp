@@ -35,13 +35,15 @@ export class TempDataMgrService {
   private _currSection:SectionDto = null;
   /*현재 선택된 문제임*/
   private _currProblem:ProblemDto = null;
-
+  /*메모라이저가 다음 문제를 내기까지 대기하는 시간을 담은 배열*/
+  private _timerStepList:Array<number> = null;
   /* 각각의 정보가 변경되는 경우 이벤트를 발생시키는 EventEmitter임 */
   public userDtoEventEmitter:EventEmitter<any>;
   public sectionListEventEmitter:EventEmitter<any>;
   public problemListEventEmitter:EventEmitter<any>;
   public currSectionEventEmitter:EventEmitter<any>;
   public currProblemEventEmitter:EventEmitter<any>;
+  public timerStepListEventEmitter:EventEmitter<any>;
 
   /*테스트용 변수임*/
   private idGenerator = 0;
@@ -59,9 +61,24 @@ export class TempDataMgrService {
     this.problemListEventEmitter = new EventEmitter<any>();
     this.currSectionEventEmitter = new EventEmitter<any>();
     this.currProblemEventEmitter = new EventEmitter<any>();
+    this.timerStepListEventEmitter = new EventEmitter<any>();
 
     this.initSectionEventHandler();
     this.initProblemEventHandler();
+    this.getTimerStepList();
+  }
+
+  getTimerStepList() :Promise<Array<number>>{
+    return new Promise<Array<number>>((resolve)=>{
+      if (!this._timerStepList) {
+        this.problemRequesterService.getTimerStepList().subscribe((timerStepList: Array<number>) => {
+          this._timerStepList = timerStepList;
+          resolve(this._timerStepList);
+        });//subscribe
+      }else{
+        resolve(this._timerStepList);
+      }
+    });
   }
 
   //초기화 관련 메서드
@@ -301,14 +318,17 @@ export class TempDataMgrService {
       return;
     }
     this.problemRequesterService.requestUpdateProblem(problemDto)
-      .subscribe(()=>{
+      .subscribe((updatedProblemDto:ProblemDto)=>{
         let foundProblemDto:ProblemDto = this.problemList.get(problemDto._id);
         //아직 TDMS에 있는 섹션객체의 값은 안바뀐 상태이므로, api 수행이 성공하면 이를 바꿔준다.
         if (foundProblemDto) {
-          foundProblemDto.title = problemDto.title;
-          foundProblemDto.question = problemDto.question;
-          foundProblemDto.answer = problemDto.answer;
-          foundProblemDto.currQuestionStep = problemDto.currQuestionStep;
+          foundProblemDto.title = updatedProblemDto.title;
+          foundProblemDto.question = updatedProblemDto.question;
+          foundProblemDto.answer = updatedProblemDto.answer;
+          if (foundProblemDto.currQuestionStep !== updatedProblemDto.currQuestionStep) {
+            foundProblemDto.recentlyQuestionedDate = updatedProblemDto.recentlyQuestionedDate;
+          }
+          foundProblemDto.currQuestionStep = updatedProblemDto.currQuestionStep;
           //마지막으로 섹션이 수정되었다는 이벤트를 발생시킴
           this.problemListEventEmitter.emit(new DocumentEvent(DocumentEventEnum.UPDATE, foundProblemDto));
         }
@@ -340,6 +360,28 @@ export class TempDataMgrService {
     // this._problemList.delete("temp");
   }
 
+  //문제출제까지 남은 시간을 계산하여 리턴하는 메서드
+  public getQuestionWaitTime(problemDto:ProblemDto){
+    if(!problemDto){
+      return -1;
+    }
+    let timerValue = 0;//문제 출제까지 대기해야 하는 시간
+    if(problemDto.currQuestionStep >= 10){
+      timerValue = this._timerStepList[9];
+    }else{
+      timerValue = this.timerStepList[problemDto.currQuestionStep];
+    }
+    let currTime = new Date();
+    //recently Questioned Date. 최근 문제출제한 시간 값
+    let rQD = new Date(problemDto.recentlyQuestionedDate);
+    // let waitTime = rQD + timerValue - currTime;
+    let waitTime = rQD.getTime() + timerValue - currTime.getTime();
+
+    console.log("ProblemInstance >> getQuestionWaitTime >> waitTime : ",waitTime);
+    return waitTime;
+  }
+
+
   get userDto() {
     return this._userDto;
   }
@@ -362,5 +404,9 @@ export class TempDataMgrService {
   }
   private getId(){
     return this.idGenerator++;
+  }
+
+  get timerStepList(): Array<number> {
+    return this._timerStepList;
   }
 }

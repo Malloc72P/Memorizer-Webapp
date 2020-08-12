@@ -23,6 +23,13 @@
         <h4>틀린횟수 : </h4>
         <h4>{{tempDataMgrService.currProblem.incorrectCount}}번</h4>
       </div>
+      <div class="article-problem-detail-item">
+        <h4>출제까지 남은 시간 : </h4>
+        <h4 *ngIf="isTimerTerminated !== true">
+          {{countdownTimer}}
+        </h4>
+        <h4 *ngIf="isTimerTerminated === true">끝남</h4>
+      </div>
     </div>
     <mat-divider></mat-divider>
   </div>
