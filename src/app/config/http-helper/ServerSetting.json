@@ -1,13 +1,13 @@
 {
-  "ngDomain": "http://localhost",
+  "ngDomain": "https://localhost",
   "ngPort": ":4200",
-  "apiDomain": "http://localhost",
+  "apiDomain": "https://localhost",
   "apiPort": ":5200",
 
-  "deploy_ngDomain": "https://gachiboard.dase.me",
+  "deploy_ngDomain": "https://memorizer.dase.me",
   "deploy_ngPort": "",
-  "deploy_apiDomain": "https://gachiboard.dase.me",
-  "deploy_apiPort": ":44174",
+  "deploy_apiDomain": "https://memorizer.dase.me",
+  "deploy_apiPort": ":44183",
 
   "contentType": "application/json; charset=utf-8",
   "tokenType": "bearer "
