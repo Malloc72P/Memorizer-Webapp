@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   flex-flow: row;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
 .sub-nav-list{
   padding-left: 8px;
