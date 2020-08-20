@@ -3,10 +3,11 @@
   height: 100%;
   display: flex;
   flex-flow: row;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .sub-nav-list{
   padding-left: 8px;
+  overflow: hidden;
 }
 .sub-nav-width-adjuster{
   cursor: col-resize;
