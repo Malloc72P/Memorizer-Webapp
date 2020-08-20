@@ -70,9 +70,6 @@ export class MainArticleComponent implements OnInit, OnDestroy {
     this.tempDataMgrService.getTimerStepList()
       .then((waitTimerList)=>{
         this.waitTimerList = waitTimerList;
-
-        console.log("waitTimerList : ",this.waitTimerList);
-
         this.getCountdownTimer();
 
         let tempInterval = setInterval(()=>{
@@ -99,7 +96,6 @@ export class MainArticleComponent implements OnInit, OnDestroy {
     1m = 60s
     1h = 60m
     */
-    console.log(`wait`)
     let currStep:number;
     let hours, minute, seconds;
 
@@ -113,7 +109,6 @@ export class MainArticleComponent implements OnInit, OnDestroy {
     seconds = Math.floor(milliseconds / ( 1000 ));
 
     let result = `${hours.toFixed(0)}시간 ${minute.toFixed(0)}분 ${seconds.toFixed(0)}초`;
-    console.log(`result : ${result}`)
     return result;
   }
 

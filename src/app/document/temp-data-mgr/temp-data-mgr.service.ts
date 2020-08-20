@@ -376,8 +376,6 @@ export class TempDataMgrService {
     let rQD = new Date(problemDto.recentlyQuestionedDate);
     // let waitTime = rQD + timerValue - currTime;
     let waitTime = rQD.getTime() + timerValue - currTime.getTime();
-
-    console.log("ProblemInstance >> getQuestionWaitTime >> waitTime : ",waitTime);
     return waitTime;
   }
 
