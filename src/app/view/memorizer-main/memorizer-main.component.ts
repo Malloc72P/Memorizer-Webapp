@@ -23,7 +23,7 @@ export class MemorizerMainComponent implements OnInit {
     private routeCtrlService: RouteCtrlService,
     private dialogCtrlService: DialogCtrlService,
     private tempDataMgrService: TempDataMgrService,
-    private browserSizeCalcService: BrowserSizeCalcService,
+    public browserSizeCalcService: BrowserSizeCalcService,
   ) {
   }
   private subscriptionList:Array<Subscription> = new Array<Subscription>();
