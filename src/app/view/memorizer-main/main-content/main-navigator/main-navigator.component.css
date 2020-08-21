@@ -6,7 +6,7 @@
 }
 .main-nav-list{
   padding-left: 6px;
-  overflow: hidden;
+  overflow: auto;
   height: 100%;
 }
 .main-nav-width-adjuster{

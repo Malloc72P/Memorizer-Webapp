@@ -3,6 +3,7 @@ import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} fro
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {KeyValue} from '@angular/common';
 import {ProblemDto} from '../../../../model/dto/problem.dto';
+import {BrowserSizeCalcService} from '../../../../model/calc-help/browser-size-calc/browser-size-calc.service';
 import {ProblemSelector} from '../../../../document/temp-data-mgr/ProblemSelector/ProblemSelector';
 
 export enum SortBaseEnum {
@@ -36,7 +37,8 @@ export class SubNavigatorComponent implements OnInit {
 
   constructor(
     public mainViewCtrlService:MainActionCtrlService,
-    public tempDataMgrService:TempDataMgrService
+    public tempDataMgrService:TempDataMgrService,
+    public browserSizeCalcService:BrowserSizeCalcService,
   ) {
     this.problemSortFunc = SubNavigatorComponent.sortByCorrectCntDesc;
     this.mainViewCtrlService.mainViewActionEventEmitter
@@ -73,6 +75,7 @@ export class SubNavigatorComponent implements OnInit {
   private isDisplayed = true;
 
   ngOnInit(): void {
+
   }
 
   onPointerDown(event){

@@ -54,7 +54,7 @@ export class DialogCtrlService {
   }
 
   openCreateProblemDialog() :Observable<any>{
-    let windowRect:Rectangle = this._getWindowRect(0.8, 0.7);
+    let windowRect:Rectangle = this._getDialogRect(0.8, 0.7);
 
     const dialogRef = this.dialog.open(CreateProblemDialogComponent, {
       width   : `${windowRect.width}px`,
@@ -65,7 +65,7 @@ export class DialogCtrlService {
     return dialogRef.afterClosed();
   }
   openUpdateProblemDialog(updateProblemDialogData:UpdateProblemDialogData): Observable<any> {
-    let windowRect:Rectangle = this._getWindowRect(0.8, 0.7);
+    let windowRect:Rectangle = this._getDialogRect(0.8, 0.7);
     const dialogRef = this.dialog.open(UpdateProblemDialogComponent, {
       width   : `${windowRect.width}px`,
       height  : `${windowRect.height}px`,
@@ -98,7 +98,7 @@ export class DialogCtrlService {
     return dialogRef.afterClosed();
   }
 
-  private _getWindowRect(widthRatio:number, heightRatio:number, defaultWidth:number = 400, defaultHeight:number = 500) : Rectangle{
+  private _getDialogRect(widthRatio:number, heightRatio:number, defaultWidth:number = 400, defaultHeight:number = 500) : Rectangle{
     let mainOuterWrapper = document.getElementById("MAIN_OUTER_WRAPPER");
     let wrapperRect = mainOuterWrapper.getBoundingClientRect();
     let dialogWidth   = wrapperRect.width   ? (wrapperRect.width  * widthRatio)   : (defaultWidth);

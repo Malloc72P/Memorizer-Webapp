@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RouteCtrlModule} from './route-ctrl/route-ctrl.module';
 import {PaletteMgrModule} from './palette-mgr/palette-mgr.module';
 import {MainActionCtrlModule} from './main-action-ctrl/main-action-ctrl.module';
+import {CalcHelpModule} from './calc-help/calc-help.module';
 
 @NgModule({
   declarations: [],
@@ -10,7 +11,8 @@ import {MainActionCtrlModule} from './main-action-ctrl/main-action-ctrl.module';
     CommonModule,
     RouteCtrlModule,
     PaletteMgrModule,
-    MainActionCtrlModule
+    MainActionCtrlModule,
+    CalcHelpModule
   ],
   providers : [
   ]

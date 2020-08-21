@@ -10,6 +10,7 @@ import {DaseDocumentEvent, DaseDocumentEventEnum} from './DocumentEvent';
 import {ProblemSelector} from './ProblemSelector/ProblemSelector';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -130,7 +131,7 @@ export class TempDataMgrService {
   }
   initDebugEventHandler(){
     this.debugEventEmitter.subscribe(()=>{
-      console.log("problemSelector : ", this.problemSelector);
+      console.log("window : ",window.innerHeight);
     });
   }
   //유저데이터 처리 메서드

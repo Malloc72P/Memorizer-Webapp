@@ -8,6 +8,8 @@
 .sub-nav-list{
   padding-left: 8px;
   overflow: hidden;
+  display: flex;
+  flex-flow: column;
 }
 .sub-nav-width-adjuster{
   cursor: col-resize;
@@ -35,4 +37,7 @@
 }
 .sub-nav-empty-notifier h3{
   margin-bottom: 0;
+}
+.sub-nav-problem-card-wrapper{
+  overflow: auto;
 }
