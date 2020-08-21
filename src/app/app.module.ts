@@ -37,7 +37,7 @@ import {MemorizerControllerModule} from './controller/memorizer-controller/memor
     MemorizerAccountMgrModule,
     DocumentModule,
     ModelModule,
-    MemorizerControllerModule
+    MemorizerControllerModule,
     /* **************************************************** */
     /* Memorizer Import END */
     /* **************************************************** */

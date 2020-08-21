@@ -7,6 +7,7 @@ import {DialogCtrlService} from '../memorizer-dialog/dialog-ctrl/dialog-ctrl.ser
 import {AreYouSureDialogData} from '../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 import {Subscription} from 'rxjs';
 import {TempDataMgrService} from '../../document/temp-data-mgr/temp-data-mgr.service';
+import {BrowserSizeCalcService} from '../../model/calc-help/browser-size-calc/browser-size-calc.service';
 
 @Component({
   selector: 'app-memorizer-main',
@@ -22,6 +23,7 @@ export class MemorizerMainComponent implements OnInit {
     private routeCtrlService: RouteCtrlService,
     private dialogCtrlService: DialogCtrlService,
     private tempDataMgrService: TempDataMgrService,
+    private browserSizeCalcService: BrowserSizeCalcService,
   ) {
   }
   private subscriptionList:Array<Subscription> = new Array<Subscription>();

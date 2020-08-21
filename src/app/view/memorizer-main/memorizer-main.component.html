@@ -4,7 +4,7 @@
   <app-main-header></app-main-header>
 
   <!--헤더 아랫부분 전체를 감싸는 래퍼임-->
-  <div class="main-content-wrapper">
+  <div class="main-content-wrapper" [ngStyle]="{height : browserSizeCalcService.getMainContentWrapperHeight()+'px'}">
 
     <!--맨 왼쪽 사이드바의 래퍼. 여기에 네비게이터 토글버튼 있음-->
     <app-main-sidebar class="light-box-shadow grey-background-5"></app-main-sidebar>
@@ -16,7 +16,7 @@
     <app-sub-navigator></app-sub-navigator>
 
     <!--페이지 내용을 표시하는 래퍼-->
-    <app-main-article class="main-article-wrapper light-box-shadow"></app-main-article>
+    <app-main-article style="overflow: auto;" class="main-article-wrapper light-box-shadow"></app-main-article>
 
   </div>
 
