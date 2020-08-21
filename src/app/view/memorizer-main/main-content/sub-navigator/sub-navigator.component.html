@@ -21,6 +21,7 @@
 
       <!--서브 네비바 헤더 { 정렬버튼이 여기 있음 }-->
       <div class="sub-nav-header" >
+        <button mat-button matTooltip="Reset Timer" (click)="onResetTimerBtnClick()"><mat-icon>sync</mat-icon></button>
         <span class="toolbar-spacer"></span>
         <button mat-button [matMenuTriggerFor]="sortByMenu"><mat-icon>sort</mat-icon></button>
         <mat-menu #sortByMenu="matMenu">

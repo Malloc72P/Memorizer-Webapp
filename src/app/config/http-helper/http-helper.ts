@@ -70,6 +70,9 @@ export class HttpHelper {
     increaseIncorrectCntOfProblem: new ApiRequest(
       "/problem/increaseIncorrectCount", ApiRequestTypeEnum.PATCH
     ),
+    resetTimer: new ApiRequest(
+      "/problem/resetTimer", ApiRequestTypeEnum.PATCH
+    ),
     deleteProblem: new ApiRequest(
       "/problem", ApiRequestTypeEnum.DELETE
     ),

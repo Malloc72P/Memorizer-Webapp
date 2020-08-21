@@ -69,6 +69,18 @@ export class ProblemRequesterService {
         });
     });
   }
+  // 문제목록 리셋
+  public requestResetProblemsTimer(problemDtoList:Array<ProblemDto>) :Observable<Array<ProblemDto>>{
+    return new Observable<Array<ProblemDto>>((observer)=>{
+      this.apiRequester.processRequest(HttpHelper.api.resetTimer, problemDtoList)
+        .subscribe((updatedList:Array<ProblemDto>)=>{
+          observer.next(updatedList);
+        },(e)=>{
+          console.log("ProblemRequesterService >> requestResetProblemsTimer >> e : ",e);
+        });
+    });
+  }
+
   // 문제 가져오기 요청
   public requestGetProblemList(sectionId) :Observable<Array<ProblemDto>>{
     return new Observable<Array<ProblemDto>>((observer)=>{

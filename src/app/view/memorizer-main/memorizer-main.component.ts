@@ -1,13 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthRequestService} from '../../controller/SocialLogin/auth-request/auth-request.service';
 import {RouteCtrlService} from '../../model/route-ctrl/route-ctrl.service';
 import {DiscordRequesterService} from '../../controller/memorizer-controller/discord-requester/discord-requester.service';
 import {DiscordUsersDto} from '../../model/dto/discord-users.dto';
 import {DialogCtrlService} from '../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
 import {AreYouSureDialogData} from '../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
-import {DocumentEvent, DocumentEventEnum, TempDataMgrService} from '../../document/temp-data-mgr/temp-data-mgr.service';
-import {SectionDto} from '../../model/dto/section.dto';
 import {Subscription} from 'rxjs';
+import {TempDataMgrService} from '../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
   selector: 'app-memorizer-main',
@@ -46,7 +45,6 @@ export class MemorizerMainComponent implements OnInit {
           tempDiscordUserDto.activationKey = activatiionKey;
           this.discordRequester.requestLinkDiscordAccount(tempDiscordUserDto)
             .subscribe((res)=>{
-              console.log("MemorizerMainComponent >> requestLinkDiscordAccount >> res : ",res);
               //그러면 그 결과를 사용자에게 보여준다
               this.dialogCtrlService.openAreYouSureDialog(new AreYouSureDialogData(
                 "디스코드 연동에 성공했어요!","이제 메모라이저가 디코로 문제를 내줄께요!", false

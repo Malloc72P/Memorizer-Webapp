@@ -71,7 +71,7 @@ export class AuthRequestService {
             data.userDto.userName,
             data.userDto.profileImg
           );
-          console.log("AuthRequestService >> protectedApi >> success >> userDto : ",userDto);
+          // console.log("AuthRequestService >> protectedApi >> success >> userDto : ",userDto);
           this.tempDataMgrService.setUserDto(data.userDto);
           // this.authEventEmitter.emit(new AuthEvent(AuthEventEnum.SIGN_IN, userDto));
           observer.next(userDto);

@@ -15,7 +15,6 @@ export class DiscordLinkProcessComponent implements OnInit {
     private routeCtrlService: RouteCtrlService,
   ) {
     let discordDataOID = this.route.snapshot.paramMap.get('discordDataOID');
-    console.log("DiscordLinkProcessComponent >> constructor >> discordDataOID : ",discordDataOID);
     localStorage.setItem("discordDataOID", discordDataOID);
     localStorage.setItem("isLinkingDiscordSequence", "y");
     if(!localStorage.getItem("accessToken")){

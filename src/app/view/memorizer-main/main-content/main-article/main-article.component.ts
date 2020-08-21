@@ -1,9 +1,10 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgWhiteboardService} from 'ng-whiteboard';
-import {DocumentEventEnum, TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
-import {DocumentEvent} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
+
 import {Subscription, timer} from 'rxjs';
 import {ProblemDto} from '../../../../model/dto/problem.dto';
+import {DaseDocumentEvent, DaseDocumentEventEnum} from '../../../../document/temp-data-mgr/DocumentEvent';
+import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 
 @Component({
   selector: 'app-main-article',
@@ -41,30 +42,30 @@ export class MainArticleComponent implements OnInit, OnDestroy {
   //TDMS관련 이벤트 처리
   onTdmsEvent(){
     let subscription = this.tempDataMgrService.currProblemEventEmitter
-      .subscribe((event:DocumentEvent)=>{
+      .subscribe((event:DaseDocumentEvent)=>{
         switch (event.action) {
-          case DocumentEventEnum.UPDATE:
+          case DaseDocumentEventEnum.UPDATE:
             this.isAnswerViewingMode = false;
             this.onCurrProblemChanged();
             break;
-          case DocumentEventEnum.DELETE:
+          case DaseDocumentEventEnum.DELETE:
             this.isAnswerViewingMode = false;
             break;
         }
     });
     this.subscriptionList.push(subscription);
     subscription = this.tempDataMgrService.problemListEventEmitter
-      .subscribe((event:DocumentEvent)=>{
+      .subscribe((event:DaseDocumentEvent)=>{
         switch (event.action) {
-          case DocumentEventEnum.CREATE:
+          case DaseDocumentEventEnum.CREATE:
             break;
-          case DocumentEventEnum.UPDATE:
+          case DaseDocumentEventEnum.UPDATE:
             let updatedProblemDto:ProblemDto = event.data;
             if(updatedProblemDto._id === this.tempDataMgrService.currProblem){
 
             }
             break;
-          case DocumentEventEnum.DELETE:
+          case DaseDocumentEventEnum.DELETE:
             break;
         }
       });
@@ -85,7 +86,6 @@ export class MainArticleComponent implements OnInit, OnDestroy {
   }
   getCountdownTimer(){
     let remainTime = this.tempDataMgrService.getQuestionWaitTime(this.tempDataMgrService.currProblem);
-    console.log("remainTime : ", remainTime);
 
     if(remainTime > 0){
       this.isTimerTerminated = false;
@@ -149,7 +149,6 @@ export class MainArticleComponent implements OnInit, OnDestroy {
   }
   public wbHeight = 420;
   resizeSidebar(event){
-    // console.log("MainArticleComponent >> resizeSidebar >> event : ",event);
     let wbCanvasEl:HTMLElement = this.wbCanvas.nativeElement;
     let newHeight = event.y - wbCanvasEl.offsetTop;
     if (420 < newHeight && newHeight < 800) {
