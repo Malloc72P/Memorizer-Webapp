@@ -42,7 +42,6 @@ export class MainActionCtrlService {
     }else{
       this.activateSearchMode(data);
     }
-    console.log("toggleSearchMode isSearchMode : ",this.isSearchMode);
   }
 
 }

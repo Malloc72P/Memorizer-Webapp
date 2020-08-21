@@ -126,11 +126,6 @@ export class MainNavigatorComponent implements OnInit, OnDestroy {
     }
   }
   onSearchDataChange(){
-    console.log(
-      `onSearechDataChange`
-    +`[ searchProblemTitle : ${this.searchProblemTitle} ]`
-    +`[ searchProblemQues : ${this.searchProblemQues} ]`
-    );
     this.tempDataMgrService.searchProblems(
       this.searchProblemTitle, this.searchProblemQues);
 

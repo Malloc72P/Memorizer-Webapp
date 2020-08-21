@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
+import {
+  MainActionCtrlService,
+  MainViewActionEvent,
+  MainViewActionEventEnum
+} from '../../../../model/main-action-ctrl/main-action-ctrl.service';
 import {DialogCtrlService} from '../../../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
-import {SectionDto} from '../../../../model/dto/section.dto';
-import {SectionRequesterService} from '../../../../controller/memorizer-controller/section-requester/section-requester.service';
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {ProblemRequesterService} from '../../../../controller/memorizer-controller/problem-requester/problem-requester.service';
 import {AreYouSureDialogData} from '../../../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
+import {DaseDocumentEvent, DaseDocumentEventEnum} from '../../../../document/temp-data-mgr/DocumentEvent';
 
 @Component({
   selector: 'app-main-sidebar',
@@ -33,7 +36,6 @@ export class MainSidebarComponent implements OnInit {
   onCreateSecionBtnClick(){
     this.dialogCtrlService.openCreateSectionDialog()
         .subscribe(result => {
-        console.log("SectionDialogCtrlService >> onCreateSecionBtnClick >> afterClosed >> result : ",result);
           if (result) {
             this.tempDataMgrService.createSection(result);
           }
@@ -42,7 +44,6 @@ export class MainSidebarComponent implements OnInit {
   onCreateProblemBtnClick(){
     this.dialogCtrlService.openCreateProblemDialog()
       .subscribe(result => {
-        console.log("SectionDialogCtrlService >> onCreateProblemBtnClick >> afterClosed >> result : ",result);
         if(!result){
           return;
         }
@@ -56,13 +57,13 @@ export class MainSidebarComponent implements OnInit {
       });
 
   }
-  onDebugBtnClicked(){
-    // this.dialogCtrlService.openDebugDialog()
-    //   .subscribe(result => {
-    //     this.tempDataMgrService.createSection(result)
-    //   });
+  onToggleSelectModeBtnClick(){
+    this.tempDataMgrService.problemSelector.toggleProblemSelectMode();
   }
   onSearchBtnClicked(){
     this.mainViewCtrlService.toggleSearchMode();
+  }
+  onDebugBtnClicked(){
+    this.tempDataMgrService.debugEventEmitter.emit(new DaseDocumentEvent(DaseDocumentEventEnum.ON_DEBUG_REQUEST, null));
   }
 }

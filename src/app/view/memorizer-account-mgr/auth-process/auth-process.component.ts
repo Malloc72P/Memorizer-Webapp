@@ -22,9 +22,7 @@ export class AuthProcessComponent implements OnInit {
     let idToken     = this.route.snapshot.paramMap.get('idToken');
     let email       = this.route.snapshot.paramMap.get('email');
     let userName    = this.route.snapshot.paramMap.get('userName');
-    console.log("AuthProcessComponent >> ngOnInit >> idToken : ",idToken);
-    console.log("AuthProcessComponent >> ngOnInit >> userName : ",userName);
-    console.log("AuthProcessComponent >> ngOnInit >> authToken : ",authToken);
+
     if(authToken){
       this.authRequester.setAuthToken(authToken);
       this.authRequester.protectedApi()

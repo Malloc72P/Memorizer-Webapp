@@ -3,6 +3,7 @@ import {MainViewActionEvent, MainViewActionEventEnum, MainActionCtrlService} fro
 import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {KeyValue} from '@angular/common';
 import {ProblemDto} from '../../../../model/dto/problem.dto';
+import {ProblemSelector} from '../../../../document/temp-data-mgr/ProblemSelector/ProblemSelector';
 
 export enum SortBaseEnum {
   CORRECT_CNT,
@@ -31,6 +32,7 @@ export class SubNavigatorComponent implements OnInit {
   public problemSortFunc:Function;
 
   @ViewChild('sidebarIdentifier') sidebarIdentifier: ElementRef;
+  private problemSelector:ProblemSelector;
 
   constructor(
     public mainViewCtrlService:MainActionCtrlService,
@@ -45,6 +47,7 @@ export class SubNavigatorComponent implements OnInit {
             break;
         }
       });
+    this.problemSelector = this.tempDataMgrService.problemSelector;
   }
   toggleNav(){
     if(this.isDisplayed){
@@ -99,7 +102,6 @@ export class SubNavigatorComponent implements OnInit {
   }
   public sortRefresher = 0;
   onSortBtnClicked(sortBase:SortBaseEnum, sortDirection:SortDirectionEnum){
-    console.log(`sortBase : ${SortBaseEnum[sortBase]} \n sortDirection : ${SortDirectionEnum[sortDirection]}`);
     // this.tempDataMgrService.sortProblemListBy(sortBase, sortDirection);
     switch (sortBase) {
       case SortBaseEnum.CORRECT_CNT:
@@ -118,6 +120,23 @@ export class SubNavigatorComponent implements OnInit {
         break;
     }
     this.tempDataMgrService.refreshProblemList();
+  }
+  onResetTimerBtnClick(){
+    let problemList:Array<ProblemDto>;
+    if(this.problemSelector.isProblemSelectMode){
+      //문제선택모드라면
+      problemList = this.problemSelector.getSelectedProblemList();
+    }else{
+      problemList = [ this.tempDataMgrService.currProblem ];
+    }
+
+    if(!problemList){
+      return;
+    }
+    if(problemList.length <= 0){
+      return;
+    }
+    this.tempDataMgrService.resetTimerOfSelectedProblemList(problemList);
   }
   public static sortByCorrectCntAsc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
     if(a.value.correctCount > b.value.correctCount){

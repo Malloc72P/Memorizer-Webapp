@@ -1,7 +1,8 @@
 <div matRipple
      *ngIf="problemDto._id !== ''"
-     class="problem-card-wrapper"
-     [ngClass]="{ 'problem-card-selected' : tempDataMgrService.currProblem && (tempDataMgrService.currProblem._id === problemDto._id) }">
+     [ngClass]="{ 'problem-card-selected' : isSelected === true }"
+     class="problem-card-wrapper">
+<!--     [ngClass]="{ 'problem-card-selected' : tempDataMgrService.currProblem && (tempDataMgrService.currProblem._id === problemDto._id) }"-->
   <div class="problem-card-title" (click)="onProblemCardClicked()">
     <h3>{{problemDto.title}}</h3>
   </div>
