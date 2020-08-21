@@ -1,20 +1,19 @@
 <h1 mat-dialog-title>문제 생성하기</h1>
-<div mat-dialog-content>
+<div mat-dialog-content style="overflow: hidden">
   <p>문제 정보를 입력해주세요</p>
   <mat-form-field>
     <mat-label>문제 이름</mat-label>
     <input matInput [(ngModel)]="newProblemDto.title">
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="create-problem-formField">
     <mat-label>문제 지문</mat-label>
-    <input matInput [(ngModel)]="newProblemDto.question">
+    <textarea matInput class="enable-pre-wrap create-problem-textarea" [(ngModel)]="newProblemDto.question"></textarea>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="create-problem-formField">
     <mat-label>문제 정답</mat-label>
-    <input matInput [(ngModel)]="newProblemDto.answer">
+    <textarea matInput class="enable-pre-wrap create-problem-textarea" [(ngModel)]="newProblemDto.answer"></textarea>
   </mat-form-field>
-
 </div>
-<div mat-dialog-actions>
+<div class="dialog-btn-wrapper" mat-dialog-actions>
   <button mat-button (click)="onCreateBtnClick()">생성하기</button>
 </div>

@@ -13,7 +13,10 @@ export class UpdateProblemDialogData{
 @Component({
   selector: 'app-update-problem-dialog',
   templateUrl: './update-problem-dialog.component.html',
-  styleUrls: ['./update-problem-dialog.component.css']
+  styleUrls: [
+    './update-problem-dialog.component.css',
+    './../../../dase-style/font-style.scss'
+  ]
 })
 export class UpdateProblemDialogComponent implements OnInit {
 

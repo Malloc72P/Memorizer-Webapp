@@ -5,7 +5,10 @@ import {ProblemDto} from '../../../../model/dto/problem.dto';
 @Component({
   selector: 'app-create-problem-dialog',
   templateUrl: './create-problem-dialog.component.html',
-  styleUrls: ['./create-problem-dialog.component.css']
+  styleUrls: ['./create-problem-dialog.component.css',
+    './../../../dase-style/dialog-style.css',
+    './../../../dase-style/font-style.scss'
+  ]
 })
 export class CreateProblemDialogComponent implements OnInit {
   public newProblemDto:ProblemDto;

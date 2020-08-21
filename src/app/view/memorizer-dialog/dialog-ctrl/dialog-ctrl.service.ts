@@ -19,6 +19,16 @@ import {
 } from '../main-dialog/update-problem-dialog/update-problem-dialog.component';
 import {DiscordLinkPwInputDialogComponent} from '../main-dialog/discord-link-pw-input-dialog/discord-link-pw-input-dialog.component';
 
+class Rectangle {
+  public width:number;
+  public height:number;
+
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,15 +54,22 @@ export class DialogCtrlService {
   }
 
   openCreateProblemDialog() :Observable<any>{
+    let windowRect:Rectangle = this._getWindowRect(0.8, 0.7);
+
     const dialogRef = this.dialog.open(CreateProblemDialogComponent, {
-      width: '400px',
+      width   : `${windowRect.width}px`,
+      height  : `${windowRect.height}px`,
+      panelClass : "fix-mat-dialog-overflow",
       data: {}
     });
     return dialogRef.afterClosed();
   }
   openUpdateProblemDialog(updateProblemDialogData:UpdateProblemDialogData): Observable<any> {
+    let windowRect:Rectangle = this._getWindowRect(0.8, 0.7);
     const dialogRef = this.dialog.open(UpdateProblemDialogComponent, {
-      width: '400px',
+      width   : `${windowRect.width}px`,
+      height  : `${windowRect.height}px`,
+      panelClass : "fix-mat-dialog-overflow",
       data: updateProblemDialogData
     });
 
@@ -79,6 +96,15 @@ export class DialogCtrlService {
       data: null
     });
     return dialogRef.afterClosed();
+  }
+
+  private _getWindowRect(widthRatio:number, heightRatio:number, defaultWidth:number = 400, defaultHeight:number = 500) : Rectangle{
+    let mainOuterWrapper = document.getElementById("MAIN_OUTER_WRAPPER");
+    let wrapperRect = mainOuterWrapper.getBoundingClientRect();
+    let dialogWidth   = wrapperRect.width   ? (wrapperRect.width  * widthRatio)   : (defaultWidth);
+    let dialogHeight  = wrapperRect.height  ? (wrapperRect.height * heightRatio)  : (defaultHeight);
+
+    return new Rectangle(dialogWidth, dialogHeight);
   }
 
 
