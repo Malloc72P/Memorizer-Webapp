@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column;
 }
+
 .article-problem-name{
   margin-bottom: 16px;
 }
@@ -30,7 +31,6 @@
   margin-bottom: 0;
 }
 
-
 .article-problem-name, .article-problem-question,
 .article-problem-answer, .article-problem-inputer{
   width: 100%;
@@ -46,7 +46,7 @@
 }
 .article-problem-question h1, .article-problem-answer h1{
   margin-right: 12px;
-  line-height: 24px;
+  line-height: 32px;
 }
 .article-problem-question{
   margin-bottom: 16px;

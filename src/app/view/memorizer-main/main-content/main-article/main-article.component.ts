@@ -8,7 +8,10 @@ import {ProblemDto} from '../../../../model/dto/problem.dto';
 @Component({
   selector: 'app-main-article',
   templateUrl: './main-article.component.html',
-  styleUrls: ['./main-article.component.css', '../../../dase-style/color-style.scss', '../../../dase-style/toolbar-style.css']
+  styleUrls: ['./main-article.component.css',
+    '../../../dase-style/color-style.scss',
+    '../../../dase-style/font-style.scss',
+    '../../../dase-style/toolbar-style.css']
 })
 export class MainArticleComponent implements OnInit, OnDestroy {
   public currInputerMode = "whiteboard";
@@ -108,7 +111,12 @@ export class MainArticleComponent implements OnInit, OnDestroy {
     //초 계산
     seconds = Math.floor(milliseconds / ( 1000 ));
 
-    let result = `${hours.toFixed(0)}시간 ${minute.toFixed(0)}분 ${seconds.toFixed(0)}초`;
+    let result;
+    if (hours < 1 && minute < 1) {
+      result = "곧 출제됨";
+    }else{
+      result = `${hours.toFixed(0)}시간 ${minute.toFixed(0)}분 ${seconds.toFixed(0)}초`;
+    }
     return result;
   }
 

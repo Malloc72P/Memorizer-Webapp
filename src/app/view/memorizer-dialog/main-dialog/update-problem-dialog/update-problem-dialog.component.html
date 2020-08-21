@@ -5,13 +5,15 @@
     <mat-label>문제 이름</mat-label>
     <input matInput [(ngModel)]="newProblemDto.title">
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="update-problem-formField">
     <mat-label>문제 지문</mat-label>
-    <input matInput [(ngModel)]="newProblemDto.question">
+    <textarea matInput class="enable-pre-wrap update-problem-textarea" [(ngModel)]="newProblemDto.question">
+    </textarea>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="update-problem-formField">
     <mat-label>문제 정답</mat-label>
-    <input matInput [(ngModel)]="newProblemDto.answer">
+    <textarea matInput class="enable-pre-wrap update-problem-textarea" [(ngModel)]="newProblemDto.answer">
+    </textarea>
   </mat-form-field>
   <br>
   <mat-label>현재 출제 간격 레벨</mat-label>

@@ -51,3 +51,11 @@ $i : 1;
 .disable-text-select{
   user-select: none;
 }
+/*###########################################################
+이름   : enable-pre-wrap
+사용법 : 개행문자 사용을 위한 클래스
+*/
+.enable-pre-wrap{
+  white-space: pre-wrap;
+}
+
