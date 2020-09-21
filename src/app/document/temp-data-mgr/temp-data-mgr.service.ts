@@ -8,6 +8,7 @@ import {AreYouSureDialogData} from '../../view/memorizer-dialog/main-dialog/are-
 import {ProblemRequesterService} from '../../controller/memorizer-controller/problem-requester/problem-requester.service';
 import {DaseDocumentEvent, DaseDocumentEventEnum} from './DocumentEvent';
 import {ProblemSelector} from './ProblemSelector/ProblemSelector';
+import * as BezierEasing from 'bezier-easing';
 
 
 
@@ -131,7 +132,12 @@ export class TempDataMgrService {
   }
   initDebugEventHandler(){
     this.debugEventEmitter.subscribe(()=>{
-      console.log("TempDataMgrService >> debug >> currProblem : ",this.currProblem);
+      //console.log("TempDataMgrService >> debug >> currProblem : ",this.currProblem);
+      let easing = BezierEasing(0,1.38,.59,.92);
+      let length = 100;
+      for (let i = 1 ; i <= length; i++){
+        console.log(`easing[${i}] \t \t : ${easing(i/100).toFixed(2)}`);
+      }
     });
   }
   //유저데이터 처리 메서드

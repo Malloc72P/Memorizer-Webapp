@@ -1,7 +1,15 @@
-.update-problem-formField, .update-problem-textarea{
+.update-problem-textarea{
   width: 100%;
   height: 95%;
   flex: 1;
+  transition: 0.2s;
+  opacity: 0.15;
+  outline: none;
+}
+.update-problem-textarea:focus{
+  opacity: 1;
+  box-shadow: 0 0 12px 0px #dc1818;
+  border-radius: 5px;
 }
 .update-problem-wrapper{
   display: flex;
