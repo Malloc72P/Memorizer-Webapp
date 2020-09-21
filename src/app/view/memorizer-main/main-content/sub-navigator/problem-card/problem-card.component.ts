@@ -85,9 +85,9 @@ export class ProblemCardComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.problemCardViewChild){
       let easing = BezierEasing(.51,.54,.39,.94);
       let currFactor = easing((this.index + 1) / (this.tempDataMgrService.problemList.size - 1));
-      let timing = 50 + 150 * currFactor;
+      let timing = 100 * currFactor;
       setTimeout(()=>{
-        this.renderer.addClass(this.problemCardViewChild.nativeElement, "test-transform");
+        this.renderer.addClass(this.problemCardViewChild.nativeElement, "anime-move-r-to-l");
       }, timing);
       console.log(`index : ${this.index + 1}\t currFactor : ${currFactor.toFixed(2)}\t timing : ${timing}`);
     }
