@@ -26,7 +26,6 @@ export class ProblemCardComponent implements OnInit, OnDestroy {
   ) {
     this.problemSelector = this.tempDataMgrService.problemSelector;
     let subsc = this.tempDataMgrService.currProblemEventEmitter.subscribe((event:DaseDocumentEvent)=>{
-
       if(event.action === DaseDocumentEventEnum.UPDATE){
         let currProblem:ProblemDto = event.data as ProblemDto;
         if(!currProblem){
@@ -65,6 +64,10 @@ export class ProblemCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    let currProblem = this.tempDataMgrService.currProblem;
+    if((currProblem && this.problemDto) && currProblem._id === this.problemDto._id){
+      this.isSelected = true;
+    }
   }
   ngOnDestroy() {
     for (let subsc of this.subscriptionList){

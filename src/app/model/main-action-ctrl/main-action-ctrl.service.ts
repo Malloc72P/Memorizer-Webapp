@@ -1,4 +1,5 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Inject, Injectable, OnInit} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
 
 export class MainViewActionEvent {
   data:any;
@@ -18,11 +19,16 @@ export enum MainViewActionEventEnum {
 @Injectable({
   providedIn: 'root'
 })
-export class MainActionCtrlService {
+export class MainActionCtrlService implements OnInit{
   public mainViewActionEventEmitter:EventEmitter<any>;
   public isSearchMode = false;
-  constructor() {
+  constructor(
+    @Inject(DOCUMENT) public document: any
+  ) {
     this.mainViewActionEventEmitter = new EventEmitter<any>();
+  }
+  ngOnInit(): void {
+    console.log("MainActionCtrlService >> ngOnInit >> 진입함");
   }
   activateSearchMode(data?){
     this.isSearchMode = true;
@@ -43,5 +49,15 @@ export class MainActionCtrlService {
       this.activateSearchMode(data);
     }
   }
-
+  onFullScreenBtnToggled(){
+    if(!document.fullscreenElement){
+      document.documentElement.requestFullscreen()
+        .then(()=>{})
+        .catch(()=>{})
+    }else if(document.exitFullscreen){
+      document.exitFullscreen()
+        .then(()=>{})
+        .catch(()=>{})
+    }
+  }
 }

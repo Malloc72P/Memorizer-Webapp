@@ -1,31 +1,45 @@
-<h1 mat-dialog-title>문제 수정하기</h1>
-<div mat-dialog-content>
-  <p>문제 정보를 입력해주세요</p>
-  <mat-form-field>
-    <mat-label>문제 이름</mat-label>
-    <input matInput [(ngModel)]="newProblemDto.title">
-  </mat-form-field>
-  <mat-form-field class="update-problem-formField">
-    <mat-label>문제 지문</mat-label>
-    <textarea matInput class="enable-pre-wrap update-problem-textarea" [(ngModel)]="newProblemDto.question">
-    </textarea>
-  </mat-form-field>
-  <mat-form-field class="update-problem-formField">
-    <mat-label>문제 정답</mat-label>
-    <textarea matInput class="enable-pre-wrap update-problem-textarea" [(ngModel)]="newProblemDto.answer">
-    </textarea>
-  </mat-form-field>
-  <br>
-  <mat-label>현재 출제 간격 레벨</mat-label>
-  <br>
-  <mat-slider min="0"
-              max="10"
-              thumbLabel="thumbLabel"
-              tickInterval="1"
-              [(ngModel)]="newProblemDto.currQuestionStep">
-  </mat-slider>
+<div class="update-problem-wrapper">
+  <h1 mat-dialog-title>문제 수정하기</h1>
+  <div mat-dialog-content class="update-problem-dialog-content">
+    <div><p>문제 정보를 입력해주세요</p></div>
+    <div>
+      <mat-form-field>
+        <mat-label>문제 이름</mat-label>
+        <input matInput [(ngModel)]="newProblemDto.title">
+      </mat-form-field>
+    </div>
 
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCreateBtnClick()">수정하기</button>
+    <div class="column-spacer"></div>
+
+    <!--문제 지문을 입력하는 텍스트 에이리어-->
+    <div class="update-problem-textarea-wrapper">
+      <mat-label>문제 지문</mat-label>
+      <textarea class="enable-pre-wrap update-problem-textarea" [(ngModel)]="newProblemDto.question"></textarea>
+    </div>
+
+    <div class="column-spacer"></div>
+
+    <!--문제 정답을 입력하는 텍스트 에이리어-->
+    <div class="update-problem-textarea-wrapper">
+      <mat-label>문제 정답</mat-label>
+      <textarea class="enable-pre-wrap update-problem-textarea" [(ngModel)]="newProblemDto.answer"></textarea>
+    </div>
+
+    <div class="column-spacer"></div>
+
+    <!--출제간격을 조절하는 슬라이더-->
+    <div style="margin-right: 16px;">
+      <mat-label>현재 출제 간격 레벨</mat-label>
+      <mat-slider min="0"
+                  max="10"
+                  thumbLabel="thumbLabel"
+                  tickInterval="1"
+                  [(ngModel)]="newProblemDto.currQuestionStep">
+      </mat-slider>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCreateBtnClick()">수정하기</button>
+  </div>
+
 </div>

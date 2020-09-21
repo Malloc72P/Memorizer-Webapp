@@ -131,7 +131,7 @@ export class TempDataMgrService {
   }
   initDebugEventHandler(){
     this.debugEventEmitter.subscribe(()=>{
-      console.log("window : ",window.innerHeight);
+      console.log("TempDataMgrService >> debug >> currProblem : ",this.currProblem);
     });
   }
   //유저데이터 처리 메서드

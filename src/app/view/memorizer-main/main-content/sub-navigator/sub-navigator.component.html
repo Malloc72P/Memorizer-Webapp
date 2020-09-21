@@ -27,6 +27,7 @@
         <mat-menu #sortByMenu="matMenu">
           <button mat-menu-item [matMenuTriggerFor]="sortByCorrectCntMenu">많이 맞춘 순서대로</button>
           <button mat-menu-item [matMenuTriggerFor]="sortByIncorrectCntMenu">많이 틀린 순서대로</button>
+          <button mat-menu-item [matMenuTriggerFor]="sortByTitleMenu">문제 이름으로</button>
           <mat-menu #sortByCorrectCntMenu="matMenu">
             <button mat-menu-item (click)="onSortBtnClicked(SortBaseEnum.CORRECT_CNT, SortDirectionEnum.ASC)">오름차순</button>
             <button mat-menu-item (click)="onSortBtnClicked(SortBaseEnum.CORRECT_CNT, SortDirectionEnum.DESC)">내림차순</button>
@@ -34,6 +35,10 @@
           <mat-menu #sortByIncorrectCntMenu="matMenu">
             <button mat-menu-item (click)="onSortBtnClicked(SortBaseEnum.INCORRECT_CNT, SortDirectionEnum.ASC)">오름차순</button>
             <button mat-menu-item (click)="onSortBtnClicked(SortBaseEnum.INCORRECT_CNT, SortDirectionEnum.DESC)">내림차순</button>
+          </mat-menu>
+          <mat-menu #sortByTitleMenu="matMenu">
+            <button mat-menu-item (click)="onSortBtnClicked(SortBaseEnum.TITLE, SortDirectionEnum.ASC)">오름차순</button>
+            <button mat-menu-item (click)="onSortBtnClicked(SortBaseEnum.TITLE, SortDirectionEnum.DESC)">내림차순</button>
           </mat-menu>
         </mat-menu>
 
