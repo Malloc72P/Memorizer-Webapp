@@ -7,7 +7,8 @@ import {ProblemDto} from '../../../../model/dto/problem.dto';
   templateUrl: './create-problem-dialog.component.html',
   styleUrls: ['./create-problem-dialog.component.css',
     './../../../dase-style/dialog-style.css',
-    './../../../dase-style/font-style.scss'
+    './../../../dase-style/font-style.scss',
+    './../../../dase-style/color-style.scss'
   ]
 })
 export class CreateProblemDialogComponent implements OnInit {

@@ -15,7 +15,8 @@ export class UpdateProblemDialogData{
   templateUrl: './update-problem-dialog.component.html',
   styleUrls: [
     './update-problem-dialog.component.css',
-    './../../../dase-style/font-style.scss'
+    './../../../dase-style/font-style.scss',
+    './../../../dase-style/color-style.scss'
   ]
 })
 export class UpdateProblemDialogComponent implements OnInit {
