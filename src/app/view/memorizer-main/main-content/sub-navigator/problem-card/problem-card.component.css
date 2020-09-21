@@ -28,15 +28,15 @@
   line-height: 32px;
   margin: 0;
 }
-.test-transform{
-  animation-duration: 0.4s;
-  animation-name: anime-rotateZ;
+.anime-move-r-to-l{
+  animation-duration: 0.1s;
+  animation-name: anime-move-r-to-l;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
-@keyframes anime-rotateZ {
+@keyframes anime-move-r-to-l {
   from{
-    transform: rotateZ(270deg);
+    transform: translateX(+100%);
     opacity: 0;
   }
   to{
