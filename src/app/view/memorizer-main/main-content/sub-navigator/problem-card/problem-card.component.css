@@ -8,6 +8,7 @@
   transition: 0.2s;
   /*padding-left: 8px;*/
   user-select: none;
+  opacity: 0;
 }
 .problem-card-wrapper:hover{
   background: lightpink;
@@ -26,4 +27,20 @@
 .problem-card-title h3{
   line-height: 32px;
   margin: 0;
+}
+.test-transform{
+  animation-duration: 0.4s;
+  animation-name: anime-rotateZ;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes anime-rotateZ {
+  from{
+    transform: rotateZ(270deg);
+    opacity: 0;
+  }
+  to{
+    transform: none;
+    opacity: 1;
+  }
 }

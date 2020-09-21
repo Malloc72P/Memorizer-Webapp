@@ -1,4 +1,13 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {ProblemDto} from '../../../../../model/dto/problem.dto';
 import {TempDataMgrService} from '../../../../../document/temp-data-mgr/temp-data-mgr.service';
 import {DialogCtrlService} from '../../../../memorizer-dialog/dialog-ctrl/dialog-ctrl.service';
@@ -6,7 +15,7 @@ import {UpdateProblemDialogData} from '../../../../memorizer-dialog/main-dialog/
 import {DaseDocumentEvent, DaseDocumentEventEnum} from '../../../../../document/temp-data-mgr/DocumentEvent';
 import {Subscription} from 'rxjs';
 import {ProblemSelector} from '../../../../../document/temp-data-mgr/ProblemSelector/ProblemSelector';
-
+import * as BezierEasing from 'bezier-easing'
 @Component({
   selector: 'app-problem-card',
   templateUrl: './problem-card.component.html',
@@ -15,14 +24,17 @@ import {ProblemSelector} from '../../../../../document/temp-data-mgr/ProblemSele
     '../../../../dase-style/toolbar-style.css',
   ]
 })
-export class ProblemCardComponent implements OnInit, OnDestroy {
+export class ProblemCardComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild("problemCardViewChild") problemCardViewChild:ElementRef;
   @Input() problemDto:ProblemDto;
+  @Input() index:number = 1;
   public isSelected:boolean = false;
   private problemSelector:ProblemSelector;
   private subscriptionList:Array<Subscription> = new Array<Subscription>();
   constructor(
     public tempDataMgrService:TempDataMgrService,
     public dialogCtrlService:DialogCtrlService,
+    private renderer:Renderer2
   ) {
     this.problemSelector = this.tempDataMgrService.problemSelector;
     let subsc = this.tempDataMgrService.currProblemEventEmitter.subscribe((event:DaseDocumentEvent)=>{
@@ -69,6 +81,18 @@ export class ProblemCardComponent implements OnInit, OnDestroy {
       this.isSelected = true;
     }
   }
+  ngAfterViewInit(): void {
+    if(this.problemCardViewChild){
+      let easing = BezierEasing(.51,.54,.39,.94);
+      let currFactor = easing((this.index + 1) / (this.tempDataMgrService.problemList.size - 1));
+      let timing = 50 + 150 * currFactor;
+      setTimeout(()=>{
+        this.renderer.addClass(this.problemCardViewChild.nativeElement, "test-transform");
+      }, timing);
+      console.log(`index : ${this.index + 1}\t currFactor : ${currFactor.toFixed(2)}\t timing : ${timing}`);
+    }
+  }
+
   ngOnDestroy() {
     for (let subsc of this.subscriptionList){
       subsc.unsubscribe();

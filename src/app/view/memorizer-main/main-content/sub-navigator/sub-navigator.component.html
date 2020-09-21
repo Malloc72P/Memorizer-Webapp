@@ -47,8 +47,8 @@
 
       <!--문제 카드들은 여기에 배치됨-->
       <div id="SUB_NAV_CARD_WRAPPER" class="sub-nav-problem-card-wrapper">
-        <app-problem-card *ngFor="let problemDto of tempDataMgrService.problemList | keyvalue : problemSortFunc"
-                          [problemDto]="problemDto.value">
+        <app-problem-card *ngFor="let problemDto of tempDataMgrService.problemList | keyvalue : problemSortFunc; let i = index;"
+                          [problemDto]="problemDto.value" [index]="i">
         </app-problem-card>
       </div>
   </div>

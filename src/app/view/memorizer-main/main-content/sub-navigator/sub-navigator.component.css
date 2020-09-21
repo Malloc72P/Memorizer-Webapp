@@ -39,5 +39,7 @@
   margin-bottom: 0;
 }
 .sub-nav-problem-card-wrapper{
-  overflow: auto;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
