@@ -69,6 +69,7 @@ export class MainArticleComponent implements OnInit, OnDestroy {
             break;
         }
       });
+    this.subscriptionList.push(subscription);
   }
   onCurrProblemChanged(){
     this.tempDataMgrService.getTimerStepList()
@@ -141,8 +142,8 @@ export class MainArticleComponent implements OnInit, OnDestroy {
   saveWb(){
 
   }
-
-  /*화이트보드 크기조절 부분 로직*/
+/*
+  /!*화이트보드 크기조절 부분 로직*!/
   @ViewChild('wbCanvas') wbCanvas: ElementRef;
   onPointerDown(event){
     this.isDragging = true;
@@ -193,6 +194,6 @@ export class MainArticleComponent implements OnInit, OnDestroy {
   }
   preventDefault(e){
     e.preventDefault();
-  }
+  }*/
 
 }

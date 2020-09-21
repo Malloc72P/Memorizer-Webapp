@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {
   MainActionCtrlService,
   MainViewActionEvent,
@@ -9,6 +9,7 @@ import {TempDataMgrService} from '../../../../document/temp-data-mgr/temp-data-m
 import {ProblemRequesterService} from '../../../../controller/memorizer-controller/problem-requester/problem-requester.service';
 import {AreYouSureDialogData} from '../../../memorizer-dialog/main-dialog/are-you-sure-dialog/are-you-sure-dialog.component';
 import {DaseDocumentEvent, DaseDocumentEventEnum} from '../../../../document/temp-data-mgr/DocumentEvent';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-main-sidebar',
@@ -17,18 +18,19 @@ import {DaseDocumentEvent, DaseDocumentEventEnum} from '../../../../document/tem
   '../../../dase-style/color-style.scss']
 })
 export class MainSidebarComponent implements OnInit {
-
   constructor(
-    public mainViewCtrlService:MainActionCtrlService,
+    public mainActionCtrlService:MainActionCtrlService,
     public dialogCtrlService:DialogCtrlService,
     public tempDataMgrService:TempDataMgrService,
-    public problemRequester:ProblemRequesterService
+    @Inject(DOCUMENT) public document: any
   ) { }
-
+  public isFullScreenMode = false;
+  public documentObject:any;
   ngOnInit(): void {
+    this.documentObject = document.documentElement;
   }
   toggleSidebar(){
-    this.mainViewCtrlService
+    this.mainActionCtrlService
       .mainViewActionEventEmitter
       .emit(new MainViewActionEvent(
         null, MainViewActionEventEnum.NAV_TOGGLE_BTN_CLICKED));
@@ -57,11 +59,23 @@ export class MainSidebarComponent implements OnInit {
       });
 
   }
-  onToggleSelectModeBtnClick(){
+  onSelectModeBtnToggled(){
     this.tempDataMgrService.problemSelector.toggleProblemSelectMode();
   }
+  onFullScreenBtnToggled(){
+    if(!document.fullscreenElement){
+      document.documentElement.requestFullscreen()
+        .then(()=>{})
+        .catch(()=>{})
+    }else if(document.exitFullscreen){
+      document.exitFullscreen()
+        .then(()=>{})
+        .catch(()=>{})
+    }
+  }
+
   onSearchBtnClicked(){
-    this.mainViewCtrlService.toggleSearchMode();
+    this.mainActionCtrlService.toggleSearchMode();
   }
   onDebugBtnClicked(){
     this.tempDataMgrService.debugEventEmitter.emit(new DaseDocumentEvent(DaseDocumentEventEnum.ON_DEBUG_REQUEST, null));

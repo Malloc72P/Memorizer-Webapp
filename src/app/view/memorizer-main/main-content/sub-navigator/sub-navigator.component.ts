@@ -9,6 +9,7 @@ import {ProblemSelector} from '../../../../document/temp-data-mgr/ProblemSelecto
 export enum SortBaseEnum {
   CORRECT_CNT,
   INCORRECT_CNT,
+  TITLE,
 }
 export enum SortDirectionEnum {
   ASC,
@@ -40,7 +41,7 @@ export class SubNavigatorComponent implements OnInit {
     public tempDataMgrService:TempDataMgrService,
     public browserSizeCalcService:BrowserSizeCalcService,
   ) {
-    this.problemSortFunc = SubNavigatorComponent.sortByCorrectCntDesc;
+    this.problemSortFunc = SubNavigatorComponent.sortByTitleDesc;
     this.mainViewCtrlService.mainViewActionEventEmitter
       .subscribe((event:MainViewActionEvent)=>{
         switch (event.action) {
@@ -121,6 +122,13 @@ export class SubNavigatorComponent implements OnInit {
           this.problemSortFunc = SubNavigatorComponent.sortByIncorrectCntDesc;
         }
         break;
+      case SortBaseEnum.TITLE:
+        if(sortDirection === SortDirectionEnum.ASC){
+          this.problemSortFunc = SubNavigatorComponent.sortByTitleAsc;
+        }else{
+          this.problemSortFunc = SubNavigatorComponent.sortByTitleDesc;
+        }
+        break;
     }
     this.tempDataMgrService.refreshProblemList();
   }
@@ -171,4 +179,19 @@ export class SubNavigatorComponent implements OnInit {
       return -1;
     }else return 0;
   }
+  public static sortByTitleAsc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
+    if(a.value.title > b.value.title){
+      return 1;
+    }else if(a.value.title < b.value.title){
+      return -1;
+    }else return 0;
+  }
+  public static sortByTitleDesc(a: KeyValue<any,ProblemDto>, b: KeyValue<any,ProblemDto>){
+    if(a.value.title < b.value.title){
+      return 1;
+    }else if(a.value.title > b.value.title){
+      return -1;
+    }else return 0;
+  }
+
 }

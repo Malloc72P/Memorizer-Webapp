@@ -41,18 +41,18 @@
   </div>
 
   <!--답 쓰는 곳-->
-  <div class="article-problem-inputer light-box-shadow">
-    <!--텍스트 답지랑 화이트보드 답지 선택하는 토글버튼그룹-->
+  <!--<div class="article-problem-inputer light-box-shadow">
+    &lt;!&ndash;텍스트 답지랑 화이트보드 답지 선택하는 토글버튼그룹&ndash;&gt;
     <mat-button-toggle-group class="horizontal-btn-wrapper" [(value)]="currInputerMode">
       <mat-button-toggle value="textarea">TextArea</mat-button-toggle>
       <mat-button-toggle value="whiteboard">Whiteboard</mat-button-toggle>
     </mat-button-toggle-group>
-    <!--화이트보드의 툴바 (리,언두, 클리어 버튼같은게 배치됨)-->
+    &lt;!&ndash;화이트보드의 툴바 (리,언두, 클리어 버튼같은게 배치됨)&ndash;&gt;
     <mat-toolbar class="wb-toolbar" *ngIf="currInputerMode === 'whiteboard'">
-      <!--<button mat-button class="wb-toolbar-btn"><mat-icon>save</mat-icon></button>-->
+      &lt;!&ndash;<button mat-button class="wb-toolbar-btn"><mat-icon>save</mat-icon></button>&ndash;&gt;
       <button mat-button class="wb-toolbar-btn" (click)="undoWb()"><mat-icon>undo</mat-icon></button>
       <button mat-button class="wb-toolbar-btn" (click)="redoWb()"><mat-icon>redo</mat-icon></button>
-      <!--브러시 굵기 설정하는 select 태그-->
+      &lt;!&ndash;브러시 굵기 설정하는 select 태그&ndash;&gt;
       <div class="wb-toolbar-brush-resizer-wrapper">
         <mat-form-field style="display: contents;">
           <mat-select [(value)]="brushSize">
@@ -69,14 +69,14 @@
       <button mat-button class="wb-toolbar-btn" (click)="clear()"><mat-icon>delete</mat-icon></button>
     </mat-toolbar>
 
-    <!--해답 입력기 본체-->
+    &lt;!&ndash;해답 입력기 본체&ndash;&gt;
     <div class="article-inputer-core">
-      <!--텍스트입력기-->
+      &lt;!&ndash;텍스트입력기&ndash;&gt;
       <mat-form-field *ngIf="currInputerMode === 'textarea'" class="textarea-inputer">
         <mat-label>정답을 입력하세요</mat-label>
         <textarea  matInput cdkTextareaAutosize cdkAutosizeMinRows="1"></textarea>
       </mat-form-field>
-      <!--화이트보드 입력기-->
+      &lt;!&ndash;화이트보드 입력기&ndash;&gt;
       <div #wbCanvas
            *ngIf="currInputerMode === 'whiteboard'"
            [ngStyle]="{height : wbHeight + 'px'}"
@@ -86,12 +86,12 @@
       <div class="whiteboard-resizer grey-background-5 light-box-shadow"
            (pointerdown)="onPointerDown($event)"></div>
     </div>
-  </div>
+  </div>-->
   <!--정답 열람모드 선택하는 버튼-->
+  <mat-divider></mat-divider>
   <div class="article-problem-submit">
     <mat-slide-toggle [(ngModel)]="isAnswerViewingMode" class="article-problem-submit-button" color="primary">정답 보기</mat-slide-toggle>
   </div>
-
   <!--정답 부분-->
   <mat-card *ngIf="isAnswerViewingMode" class="article-problem-answer">
     <h4 style="font-weight: bold">정답</h4>
